@@ -1,6 +1,6 @@
 var db = require('../../config/db');
-var Type_connect = require('./type_connect');
-var Role = require('./role');
+var Type_connect = require('./c_users_connexion');
+var Role = require('./c_users_roles');
 
 var bcrypt = require('bcrypt');
 
