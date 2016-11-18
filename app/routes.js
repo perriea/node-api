@@ -8,12 +8,15 @@ var bcrypt = require('bcrypt');
 var salt   = bcrypt.genSaltSync(10);
 
 var MUsers  = require("./models/c_users");
+var Example = require("./controllers/example");
 
 module.exports = function(app, passport) {
 
     app.get('/', function (req, res) {
-        res.status(200).send({ error: false, message: "API OK" });
+        res.status(200).send({ error: false, message: "Hello world !" });
     });
+
+    app.get('/example', Example.test);
 
     // =====================================
     // AUTHENTIFICATION ====================
