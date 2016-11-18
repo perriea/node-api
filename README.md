@@ -1,1 +1,3 @@
-# Cocktail.io
+# Model Framework Express
+
+Départ du projet.
