@@ -7,7 +7,10 @@ var bcrypt = require('bcrypt');
 var sequelize = db.sequelize,
     access = db.access;
 
-var methods = { generateHash: null, validPassword: null };
+var methods = {
+    generateHash: null,
+    validPassword: null
+};
 
 var TUsers = access.define('c_users', {
     lastname: {
@@ -65,6 +68,7 @@ methods.validPassword = function(password, user) {
 Type_connect.sync();
 Role.sync();
 
+// index
 Role.hasOne(TUsers, {onDelete: 'SET NULL'});
 Type_connect.hasOne(TUsers, {onDelete: 'SET NULL'});
 
