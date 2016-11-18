@@ -9,3 +9,4 @@ coverage/
 .idea/
 .tmp/
 dist/
+npm-debug.log
