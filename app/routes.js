@@ -8,7 +8,6 @@ var bcrypt = require('bcrypt');
 var salt   = bcrypt.genSaltSync(10);
 
 var MUsers  = require("./models/c_users");
-//var Generate = require("./controllers/generate");
 
 module.exports = function(app, passport) {
 
