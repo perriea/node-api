@@ -1,7 +1,5 @@
 var db = require('../../config/db');
-
-var sequelize = db.sequelize,
-    access = db.access;
+var access = db.access;
 
 var Type_connect = access.define('c_users_connexion', {
     type: {

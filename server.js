@@ -13,8 +13,8 @@ var expressSession = require('express-session');
 
 // configuration ===========================================
 
-// PORT du serveur web : 9002
-var port = process.env.PORT || 9002;
+// PORT du serveur web : 10000
+var port = process.env.PORT || 10000;
 
 // Recuperation des POST
 // parse application/json 
@@ -38,7 +38,7 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 // auth
 // init de session Passport
 app.use(expressSession({
-	secret: 'utkgE45dg649SB55WJaJ',
+	secret: 'RANDOM',
 	resave: true,
     saveUninitialized: true
 }));
