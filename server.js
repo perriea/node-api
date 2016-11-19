@@ -5,7 +5,7 @@ var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
 var cookieParser   = require('cookie-parser');
 var sequelize      = require('sequelize');
-var flash          = require('req-flash');
+//var flash          = require('req-flash');
 var cors           = require('cors');
 
 var passport       = require('passport');
@@ -44,10 +44,10 @@ app.use(expressSession({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(flash());
+//app.use(flash());
 
 // set the static files location /public/img will be /img for users
-app.use(express.static(__dirname + '/public')); 
+//app.use(express.static(__dirname + '/public'));
 
 // routes ==================================================
 require('./app/routes')(app, passport); // configure our routes
