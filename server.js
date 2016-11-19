@@ -54,7 +54,7 @@ require('./app/routes')(app, passport); // configure our routes
 require('./config/passport')(passport);
 
 // start app ===============================================
-// startup our app at http://localhost:9002
+// startup our app at http://localhost:10000
 app.listen(port);               
 
 // shoutout to the user                     
