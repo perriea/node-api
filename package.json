@@ -8,7 +8,6 @@
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.1",
-    "ejs": "^2.4.2",
     "express": "~4.5.1",
     "express-session": "^1.14.0",
     "flat-colors": "^3.3.3",
@@ -24,8 +23,7 @@
     "passport-local": "^1.0.0",
     "passport-twitter": "^1.0.4",
     "req-flash": "0.0.3",
-    "sequelize": "^3.23.4",
-    "serve-favicon": "^2.3.0"
+    "sequelize": "^3.23.4"
   },
   "devDependencies": {
     "log": "^1.4.0",
