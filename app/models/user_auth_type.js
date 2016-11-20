@@ -1,0 +1,17 @@
+var db = require('../../config/db');
+
+var sequelize = db.sequelize,
+    access = db.access;
+
+var Role = access.define('c_user_auth_type', {
+    name: {
+        type: access.Sequelize.STRING(30),
+        allowNull: false
+    },
+    description: {
+        type: access.Sequelize.STRING(50),
+        allowNull: true
+    }
+}, { timestamps: false });
+
+module.exports = Role;
