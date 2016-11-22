@@ -1,2 +1,2 @@
 # Script MySQL
-USE test;
+USE dev-node;
