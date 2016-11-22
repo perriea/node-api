@@ -1,3 +1,1 @@
-# Model Framework Express
-
-Départ du projet.
+# Model Framework Express## Installation### Linux (Débian)Avec le gestionnaire de packet `apt-get` ou `aptitude` exécuter le script se situant dans : `/Node-API/tools/cli/shell/install-linux.sh`.Ce script installe tout ce qu'il y a besoin : MySQL, NodeJS, NPM, dépendances du projet etc...### Mac OSXInstaller `brew` si ce n'est pas déjà fait.Exécuter le script suivant : `/Node-API/tools/cli/shell/install-mac.sh`## Construction du projetCe projet a été réalisé avec les outils suivant.* NodeJS* Express* MySQL* Sequelize (ORM MySQL)* SuperTest (test unitaires)Tout est déjà en place il n'y a pas plus qu'à utiliser :)Bon dev !
