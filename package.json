@@ -22,11 +22,11 @@
     "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0",
     "passport-twitter": "^1.0.4",
-    "req-flash": "0.0.3",
     "sequelize": "^3.23.4"
   },
   "devDependencies": {
     "log": "^1.4.0",
-    "sequelize-cli": "^2.4.0"
+    "sequelize-cli": "^2.4.0",
+    "supertest": "^2.0.1"
   }
 }
