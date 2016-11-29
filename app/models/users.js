@@ -6,9 +6,8 @@ var Pref = require('./preferences');
 
 var bcrypt = require('bcrypt');
 
-var sequelize = db.sequelize,
-access = db.access;
-
+//var sequelize = db.sequelize;
+var access = db.access;
 var methods = { generateHash: null, validPassword: null }; 
 
 var TUsers = access.define('c_users', {
