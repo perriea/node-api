@@ -6,11 +6,11 @@ colors.setTheme({
     input: 'grey',
     verbose: 'cyan',
     prompt: 'grey',
-    info: 'green',
+    info: 'blue',
     data: 'grey',
     help: 'cyan',
     warn: ['yellow', 'bold'],
-    debug: 'blue',
+    debug: 'cyan',
     error: ['red', 'bold']
 });
 
