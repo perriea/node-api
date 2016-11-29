@@ -5,6 +5,7 @@ brew update
 brew install git
 brew install npm
 brew install mysql-server
+brew install openssl
 
 # on clone notre depot et on prepare MySQL
 cd ~/
