@@ -3,14 +3,14 @@
 // expose our config directly to our application using module.exports
 module.exports = {
     'twitterAuth' : {
-        'consumerKey'       : 'blablablablablablablablablabla',
-        'consumerSecret'    : 'blablablablablablablablablabla',
-        'callbackURL'       : 'blablablablablablablablablabla'
+        'consumerKey'       : 'a',
+        'consumerSecret'    : 'a',
+        'callbackURL'       : 'a'
     },
 
     'googleAuth' : {
-        'clientID'      : 'blablablablablablablablablabla',
-        'clientSecret'  : 'blablablablablablablablablabla',
-        'callbackURL'   : 'blablablablablablablablablabla'
+        'clientID'      : 'a',
+        'clientSecret'  : 'a',
+        'callbackURL'   : 'a'
     }
 };
