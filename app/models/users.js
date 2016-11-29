@@ -1,19 +1,17 @@
 var db = require('../../config/db');
-var Type_connect = require('./user_auth_type');
-var Role = require('./user_role');
-var Pref = require('./user_prefs');
+var Type_connect = require('./type_connect');
+var Role = require('./role');
+var Page = require('./page');
+var Pref = require('./preferences');
 
 var bcrypt = require('bcrypt');
 
 var sequelize = db.sequelize,
-    access = db.access;
+access = db.access;
 
-var methods = {
-    generateHash: null,
-    validPassword: null
-};
+var methods = { generateHash: null, validPassword: null }; 
 
-var TUsers = access.define('c_user', {
+var TUsers = access.define('c_users', {
 
     authenticate_id: {
         type: access.Sequelize.INTEGER(1),
@@ -24,18 +22,18 @@ var TUsers = access.define('c_user', {
         allowNull: false,
         defaultValue: 4,
     },
-    email: {
-        type: access.Sequelize.STRING(200),
-        allowNull: false,
-        unique: true,
+  	email: {
+      	type: access.Sequelize.STRING(200),
+      	allowNull: false,
+      	unique: true,
         validate: {
             isEmail: true
         }
-    },
-    password: {
-        type: access.Sequelize.STRING(255),
-        allowNull: true
-    }
+  	},
+  	password: {
+      	type: access.Sequelize.STRING(255),
+      	allowNull: true
+  	}
 }, { timestamps: false });
 
 // methods ======================
@@ -46,17 +44,19 @@ methods.generateHash = function(password) {
 
 // checking if password is valid
 methods.validPassword = function(password, user) {
-    return bcrypt.compareSync(password, user.password, null);
+	return bcrypt.compareSync(password, user.password, null);
 };
-
-Type_connect.sync();
-Role.sync();
-Pref.sync();
 
 Role.hasOne(TUsers, { foreignKey : 'role_id', onDelete: 'NO ACTION' });
 Type_connect.hasOne(TUsers, { foreignKey : 'authenticate_id', onDelete: 'NO ACTION' });
-//Pref.hasOne(TUsers, { foreignKey : 'id', onDelete: 'NO ACTION' });
+//Pref.hasMany(TUsers, { foreignKey: "user_id" });
+Page.hasOne(Pref, { foreignKey: 'page_id', onDelete: 'NO ACTION'});
 
+
+Type_connect.sync();
+Role.sync();
+Page.sync();
+Pref.sync();
 TUsers.sync();
 
-module.exports = { TUsers, Pref, Type_connect, Role, methods };
+module.exports = { TUsers, Pref, Type_connect, Role, Page, methods };

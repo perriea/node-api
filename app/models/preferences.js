@@ -3,13 +3,13 @@ var db = require('../../config/db');
 var sequelize = db.sequelize,
     access = db.access;
 
-var Pref = access.define('c_user_prefs', {
+var Pref = access.define('c_preferences', {
     user_id: {
         type: access.Sequelize.INTEGER(5),
         allowNull: false
     },
-    page: {
-        type: access.Sequelize.STRING(50),
+    page_id: {
+        type: access.Sequelize.INTEGER(5),
         allowNull: false
     },
     options: {
