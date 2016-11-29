@@ -5,10 +5,11 @@ var Page = require('./page');
 var Pref = require('./preferences');
 
 var bcrypt = require('bcrypt');
+var colors = require('../../config/color');
 
-//var sequelize = db.sequelize;
+var sequelize = db.sequelize;
 var access = db.access;
-var methods = { generateHash: null, validPassword: null }; 
+var methods = { generateHash: null, validPassword: null };
 
 var TUsers = access.define('c_users', {
 
@@ -51,11 +52,16 @@ Type_connect.hasOne(TUsers, { foreignKey : 'authenticate_id', onDelete: 'NO ACTI
 //Pref.hasMany(TUsers, { foreignKey: "user_id" });
 Page.hasOne(Pref, { foreignKey: 'page_id', onDelete: 'NO ACTION'});
 
+db.access.authenticate().then(function(err) {
+    console.log(colors.info('Connection has been established successfully.'));
+    Type_connect.sync();
+    Role.sync();
+    Page.sync();
+    Pref.sync();
+    TUsers.sync();
 
-Type_connect.sync();
-Role.sync();
-Page.sync();
-Pref.sync();
-TUsers.sync();
+}).catch(function (err) {
+    console.log(colors.error('MySQL:' + err.message));
+});
 
 module.exports = { TUsers, Pref, Type_connect, Role, Page, methods };
