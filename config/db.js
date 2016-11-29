@@ -1,19 +1,44 @@
 // config/database.js
 var Sequelize = require('sequelize');
 
-var sequelize = new Sequelize('dev-node', 'node', 'nodejs', {
-	host: 'localhost',
-	port: 3306,
-	dialect: 'mysql', 
-	pool: { 
-		max: 5, 
-		min: 0, 
-		idle: 10000
-	}
-});
+// config sequelize - MySQL
+// Active Log to loggin: true
+var config_sequelize = {
+    database: 'dev-node',
+    user: 'node',
+    password: 'nodejs',
+    config: {
+        host: 'localhost',
+        port: 3306,
+        dialect: 'mysql',
+        ssl: false,
+        replication: false,
 
-var db = {};
-db.access = sequelize;
-db.sequelize = Sequelize;
+        ///// debug + perf /////
+        logging: false,
+        benchmark: false,
+        sync: {
+            force: false
+        },
+        keepDefaultTimezone: true,
+        //timezone: '+01:00',
+        ////////////////////////
+
+        pool: {
+            max: 10,
+            min: 0,
+            idle: 10000
+        }
+    }
+};
+
+// connexion database
+var sequelize = new Sequelize(config_sequelize.database, config_sequelize.user, config_sequelize.password, config_sequelize.config);
+
+// var access resources
+var db = {
+	access: sequelize,
+	sequelize: Sequelize
+};
 
 module.exports = db;

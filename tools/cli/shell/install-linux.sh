@@ -5,6 +5,7 @@ sudo apt-get update
 apt-get install git
 apt-get install npm
 apt-get install mysql-server
+apt-get install openssl
 
 # on clone notre depot et on prepare MySQL
 cd ~/

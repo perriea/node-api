@@ -1,7 +1,5 @@
 var db = require('../../config/db');
-
-var sequelize = db.sequelize,
-    access = db.access;
+var access = db.access;
 
 var Page = access.define('c_page', {
     name: {

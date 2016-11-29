@@ -1,7 +1,5 @@
 var db = require('../../config/db');
-
-var sequelize = db.sequelize,
-    access = db.access;
+var access = db.access;
 
 var Pref = access.define('c_preferences', {
     user_id: {

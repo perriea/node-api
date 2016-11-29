@@ -1,7 +1,5 @@
 var db = require('../../config/db');
-
-var sequelize = db.sequelize,
-    access = db.access;
+var access = db.access;
 
 var Role = access.define('c_role', {
     role: {
