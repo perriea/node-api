@@ -22,7 +22,8 @@
     "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0",
     "passport-twitter": "^1.0.4",
-    "sequelize": "^3.23.4"
+    "sequelize": "^3.23.4",
+    "serve-favicon": "^2.3.2"
   },
   "devDependencies": {
     "log": "^1.4.0",
