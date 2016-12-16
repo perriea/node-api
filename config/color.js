@@ -8,10 +8,14 @@ colors.setTheme({
     prompt: 'grey',
     info: 'blue',
     data: 'grey',
-    help: 'cyan',
+    help: 'green',
     warn: ['yellow', 'bold'],
     debug: 'cyan',
-    error: ['red', 'bold']
+    error: ['red', 'bold'],
+    get: ['green', 'italic'],
+    post: ['blue', 'italic'],
+    put: ['orange', 'italic'],
+    delete: ['red', 'italic']
 });
 
 module.exports = colors;
