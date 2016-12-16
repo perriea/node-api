@@ -6,6 +6,7 @@ module.exports = {
         {
             case 400:
                 res.status(400).send({ error: true, message: "Bad Request" });
+                //console.log(colors.error('GET > ' + req.url + ' - 400 - auth:'), req.session.username);
                 break;
 
             case 401:
