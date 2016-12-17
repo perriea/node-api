@@ -1,3 +1,5 @@
+var error = require(__dirname + '/controllers/error');
+
 module.exports = {
 
     isLoggedIn: function(req, res, next)
@@ -5,7 +7,7 @@ module.exports = {
         if (req.isAuthenticated())
             return next();
 
-        res.status(401).send({ error: true, message: "Unauthorized, authentification required" });
+        error.http_error(req, res, { code: 401 });
     },
 
     isAdminIn: function (req, res, next)
@@ -15,10 +17,10 @@ module.exports = {
                 if (user)
                     return next();
             }).catch(function (e) {
-                console.log("isAdminIn : Erreur dans la requête.");
+                error.http_error(req, res, { code: 500 });
             });
         }
 
-        res.status(401).send({ error: true, message: "Unauthorized, authentification required and admin." });
+        error.http_error(req, res, { code: 401 });
     }
 };
