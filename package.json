@@ -1,6 +1,6 @@
 {
-  "name": "Node-API",
-  "version": "0.0.1",
+  "name": "My App",
+  "version": "2.0.0",
   "main": "server.js",
   "dependencies": {
     "bcrypt": "^0.8.7",
