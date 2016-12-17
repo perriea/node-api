@@ -17,6 +17,7 @@ cp ~/Node-API/tools/cli/mysql/config.cnf ~/.mysql-config.cnf
 mysql -u root "source ~/Node-API/tools/cli/mysql/init-user.sql"
 
 npm install forever -g
+npm install mocha -g
 
 npm install
 npm start
