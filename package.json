@@ -1,7 +1,7 @@
 {
   "name": "Node-API",
   "version": "0.0.1",
-  "main": "cluster.js",
+  "main": "server.js",
   "dependencies": {
     "bcrypt": "^0.8.7",
     "body-parser": "~1.4.2",
