@@ -1,10 +1,11 @@
 {
   "name": "Node-API",
   "version": "0.0.1",
-  "main": "server.js",
+  "main": "cluster.js",
   "dependencies": {
     "bcrypt": "^0.8.7",
     "body-parser": "~1.4.2",
+    "cluster": "^0.7.7",
     "colors": "^1.1.2",
     "compression": "^1.6.2",
     "cookie-parser": "^1.4.3",
@@ -19,13 +20,15 @@
     "method-override": "~2.0.2",
     "morgan": "^1.7.0",
     "mysql": "^2.11.1",
+    "os": "^0.1.1",
     "passport": "^0.3.2",
     "passport-google": "^0.3.0",
     "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0",
     "passport-twitter": "^1.0.4",
     "sequelize": "^3.23.4",
-    "serve-favicon": "^2.3.2"
+    "serve-favicon": "^2.3.2",
+    "strftime": "^0.9.2"
   },
   "devDependencies": {
     "log": "^1.4.0",
