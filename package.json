@@ -1,7 +1,22 @@
 {
   "name": "Node-API",
   "version": "2.0.0",
+  "homepage": "*YOUR GITHUB URL*#readme",
+  "description": "Simple Node JS Framework",
   "main": "server.js",
+  "scripts": {
+    "cluster": "node cluster.js",
+    "test": "mocha test/test.js"
+  },
+  "author": "PERRIER Aurelien",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/perriea/Node-API"
+  },
+  "bugs": {
+    "url": "https://github.com/perriea/Node-API/issues"
+  },
   "dependencies": {
     "bcrypt": "^0.8.7",
     "body-parser": "~1.4.2",
@@ -26,14 +41,16 @@
     "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0",
     "passport-twitter": "^1.0.4",
+    "request": "^2.79.0",
     "sequelize": "^3.23.4",
     "serve-favicon": "^2.3.2",
     "strftime": "^0.9.2"
   },
   "devDependencies": {
+    "assert": "^1.4.1",
+    "describe": "^1.2.0",
     "log": "^1.4.0",
     "mocha": "^3.2.0",
-    "sequelize-cli": "^2.4.0",
-    "supertest": "^2.0.1"
+    "sequelize-cli": "^2.4.0"
   }
 }
