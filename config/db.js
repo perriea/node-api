@@ -15,7 +15,7 @@ var config_sequelize = {
         replication: false,
 
         ///// debug + perf /////
-        logging: false,
+        logging: false, // default: console.log
         benchmark: false,
         sync: {
             force: false
