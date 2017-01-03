@@ -1,12 +1,11 @@
 node_modules/
-bower_components/
-coverage/
+config/ssl/cert.pem
+config/ssl/key.pem
 .DS_Store
+yarn.lock
 *~
 ./**/.DS_Store
 **/.DS_Store
-.sass-cache/
 .idea/
 .tmp/
-dist/
 npm-debug.log

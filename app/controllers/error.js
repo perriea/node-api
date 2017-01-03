@@ -26,7 +26,6 @@ module.exports = {
 
             default:
                 res.status(400).send({ error: true, message: "Bad Request" });
-                //console.log(colors.error('GET > ' + req.url + ' - 400 - auth:'), req.session.username);
         }
     },
 
@@ -36,12 +35,10 @@ module.exports = {
         {
             case 201:
                 res.status(201).send({ error: false, message: info.message });
-                //console.log(colors.error('GET > ' + req.url + ' - 400 - auth:'), req.session.username);
                 break;
 
             default:
                 res.status(200).send({ error: false, message: info.message, data: info.data });
-
         }
     }
 };
