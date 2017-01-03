@@ -1,15 +1,25 @@
-var cluster = require('cluster');
-var numCPUs = require('os').cpus().length;
+var cluster = require("cluster");
+var os = require("os");
 
-if (cluster.isMaster) {
+const CPUS = os.cpus();
+if (cluster.isMaster)
+{
+    CPUS.forEach(function() {
+        cluster.fork()
+    });
 
-    for (var i = 0; i < numCPUs; i++) {
+    cluster.on("listening", function(worker) {
+        console.log("Cluster %d connected", worker.process.pid);
+    });
+
+    cluster.on("disconnect", function(worker) {
+        console.log("Cluster %d disconnected", worker.process.pid);
+    });
+
+    cluster.on("exit", function(worker) {
+        console.log("Cluster %d is dead", worker.process.pid);
+        // Ensuring a new cluster will start if an old one dies
         cluster.fork();
-    }
-
-    cluster.on('exit', function(worker, code, signal) {
-        cluster.fork();
-        console.log('worker ' + worker.process.pid + ' died');
     });
 }
 else
