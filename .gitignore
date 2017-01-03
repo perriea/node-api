@@ -2,6 +2,7 @@ node_modules/
 config/ssl/cert.pem
 config/ssl/key.pem
 .DS_Store
+yarn.lock
 *~
 ./**/.DS_Store
 **/.DS_Store
