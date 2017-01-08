@@ -19,10 +19,12 @@ var app            = express();
 var colors         = require(__dirname + '/config/color');
 var error          = require(__dirname + '/app/controllers/error');
 
-// var
-var ports = { http: 8080, https: 4433 };
-var httpServer = null;
-var httpsServer = null;
+// var ports + SSL
+var ports = {
+    http: 8080,
+    https: 4433
+};
+
 var credentials = {
 	key: fs.readFileSync(__dirname + '/config/ssl/server.key'),
 	cert: fs.readFileSync(__dirname + '/config/ssl/server.crt')
@@ -98,13 +100,13 @@ require('./config/passport')(passport);
 }).listen(ports.http);*/
 
 // Indep http
-httpServer = http.createServer(app).listen(ports.http);
+http.createServer(app).listen(ports.http);
 
 // Indep https/1.1
-httpsServer = spdy.createServer(credentials, app).listen(ports.https);
+https.createServer(credentials, app).listen(ports.https);
 
 // Indep http/2
-//spdy.createServer(credentials, app).listen(ports.https);
+//httpsServer = spdy.createServer(credentials, app).listen(ports.https);
 
 
 // Affichage des infos
