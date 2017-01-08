@@ -1,23 +1,22 @@
 #!/bin/bash
 
-# on installe les composant min sur le serveur
+# install composants minimum on this server
 brew update
-brew install git
-brew install npm
-brew install mysql-server
-brew install openssl
+brew upgrade
 
-# on clone notre depot et on prepare MySQL
+brew install git npm mysql-server openssl
+
+# clone repo and prepare MySQL server
 cd ~/
 git clone https://github.com/perriea/Node-API.git
 cp ~/Node-API/tools/cli/mysql/config.cnf ~/.mysql-config.cnf
 /etc/init.d/mysql restart
 
-# on crée la base de donnée avec son utilisateur
+# Create database and user MySQL
 mysql -u root "source ~/Node-API/tools/cli/mysql/init-user.sql"
 
 npm install forever -g
 npm install mocha -g
 
 npm install
-npm start
+pm2 start cluster.js --watching
