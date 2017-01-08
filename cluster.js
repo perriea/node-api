@@ -1,5 +1,5 @@
 var cluster = require("cluster");
-var os = require("os");
+var os      = require("os");
 
 const CPUS = os.cpus();
 if (cluster.isMaster)
@@ -18,12 +18,11 @@ if (cluster.isMaster)
 
     cluster.on("exit", function(worker) {
         console.log("Cluster %d is dead", worker.process.pid);
-        // Ensuring a new cluster will start if an old one dies
         cluster.fork();
     });
 }
 else
 {
-    //change this line to Your Node.js app entry point.
+    // Load server
     require(__dirname + "/server");
 }
