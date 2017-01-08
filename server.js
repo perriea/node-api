@@ -1,6 +1,7 @@
 var express        = require('express');
 var http           = require('http');
 var https          = require('https');
+//var spdy		   = require('spdy');
 
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
@@ -23,8 +24,8 @@ var ports = { http: 8080, https: 4433 };
 var httpServer = null;
 var httpsServer = null;
 var credentials = {
-	key: fs.readFileSync(__dirname + '/config/ssl/key.pem'),
-	cert: fs.readFileSync(__dirname + '/config/ssl/cert.pem')
+	key: fs.readFileSync(__dirname + '/config/ssl/server.key'),
+	cert: fs.readFileSync(__dirname + '/config/ssl/server.crt')
 };
 
 
@@ -99,8 +100,11 @@ require('./config/passport')(passport);
 // Indep http
 httpServer = http.createServer(app).listen(ports.http);
 
-// Indep https
-httpsServer = https.createServer(credentials, app).listen(ports.https);
+// Indep https/1.1
+httpsServer = spdy.createServer(credentials, app).listen(ports.https);
+
+// Indep http/2
+//spdy.createServer(credentials, app).listen(ports.https);
 
 
 // Affichage des infos
