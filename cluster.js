@@ -1,28 +1,14 @@
-var cluster = require("cluster");
-var os      = require("os");
+// Zerodown time Cluster
+var recluster = require('recluster');
+var path      = require('path');
 
-const CPUS = os.cpus();
-if (cluster.isMaster)
-{
-    CPUS.forEach(function() {
-        cluster.fork()
-    });
+var cluster   = recluster(path.join(__dirname, 'server.js'));
+cluster.run();
 
-    cluster.on("listening", function(worker) {
-        console.log("Cluster %d connected", worker.process.pid);
-    });
+// if process is killed, reload the cluster
+process.on('SIGUSR2', function() {
+    console.log('Got SIGUSR2, reloading cluster...');
+    cluster.reload();
+});
 
-    cluster.on("disconnect", function(worker) {
-        console.log("Cluster %d disconnected", worker.process.pid);
-    });
-
-    cluster.on("exit", function(worker) {
-        console.log("Cluster %d is dead", worker.process.pid);
-        cluster.fork();
-    });
-}
-else
-{
-    // Load server
-    require(__dirname + "/server");
-}
+console.log("Spawned cluster, PID", process.pid);
