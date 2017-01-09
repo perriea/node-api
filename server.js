@@ -1,8 +1,13 @@
+// Framework ExpressJS
 var express        = require('express');
+var pmx            = require('pmx').init({ http : true });
+
+// HTTP/1.1 ou HTTP/2 (spdy)
 var http           = require('http');
 var https          = require('https');
-//var spdy		   = require('spdy');
+var spdy		   = require('spdy');
 
+var path           = require('path');
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
 var cookieParser   = require('cookie-parser');
@@ -16,8 +21,8 @@ var compression    = require("compression");
 var helmet         = require("helmet");
 var app            = express();
 
-var colors         = require(__dirname + '/config/color');
-var error          = require(__dirname + '/app/controllers/error');
+var colors         = require(path.join(__dirname, '/config/color'));
+var error          = require(path.join(__dirname, '/app/controllers/error'));
 
 // var ports + SSL
 var ports = {
@@ -26,8 +31,8 @@ var ports = {
 };
 
 var credentials = {
-	key: fs.readFileSync(__dirname + '/config/ssl/server.key'),
-	cert: fs.readFileSync(__dirname + '/config/ssl/server.crt')
+	key: fs.readFileSync(path.join(__dirname, '/config/ssl/server.key')),
+	cert: fs.readFileSync(path.join(__dirname, '/config/ssl/server.crt'))
 };
 
 
@@ -66,8 +71,8 @@ app.use(cors({
 app.use(methodOverride('X-HTTP-Method-Override'));
 
 // favicon
-app.use(express.static(__dirname + '/public'));
-app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(express.static(path.join(__dirname, '/public')));
+app.use(favicon(path.join(__dirname, '/public/favicon.ico')));
 
 // compression => fast and light request
 app.use(compression());
@@ -76,8 +81,7 @@ app.use(compression());
 app.use(helmet());
 
 
-// auth
-
+// Auth
 // init de session Passport
 app.use(expressSession({
 	secret: 'RANDOM',
@@ -93,26 +97,20 @@ require('./app/routes')(app, passport, error); // configure our routes
 require('./config/passport')(passport);
 
 // start app ===============================================
-// pass http to https
+// change http to https
+
+console.log(colors.info('RESTful API running, PID : ' + process.pid));
+
 /*httpServer = http.createServer(function (req, res) {
 	res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
 	res.end();
 }).listen(ports.http);*/
 
-// Indep http
-http.createServer(app).listen(ports.http);
+// HTTP/1.1
+http.createServer(app).listen(ports.http, () => { console.log(colors.verbose('Port serveur HTTP (API) : ' + ports.http)); });
+https.createServer(credentials, app).listen(ports.https, () => { console.log(colors.verbose('Port serveur HTTPS (API) : ' + ports.https)); });
 
-// Indep https/1.1
-https.createServer(credentials, app).listen(ports.https);
-
-// Indep http/2
+// HTTP/2
 //httpsServer = spdy.createServer(credentials, app).listen(ports.https);
 
-
-// Affichage des infos
-console.log(colors.info('RESTful API running ...'));
-console.log(colors.verbose('Port serveur HTTP (API) : ' + ports.http));
-console.log(colors.verbose('Port serveur HTTPS (API) : ' + ports.https));
-
-// expose app           
 exports = module.exports = app;
