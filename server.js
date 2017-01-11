@@ -1,5 +1,6 @@
 // Framework ExpressJS
 var express        = require('express');
+var robots          = require('express-robots');
 var pmx            = require('pmx').init({ http : true });
 
 // HTTP/1.1 ou HTTP/2 (spdy)
@@ -43,6 +44,8 @@ app.locals.email = 'me@myapp.com';
 
 
 // configuration ===========================================
+
+app.use(robots(path.join(__dirname, '/public/robots.txt')));
 
 // show logs in console
 app.use(morgan("common"));

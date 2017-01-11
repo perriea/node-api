@@ -1,9 +1,10 @@
 var sequelize  = require('sequelize');
-var Middleware = require(__dirname + '/middleware');
+var path       = require('path');
 
-var Example    = require(__dirname + "/controllers/example");
-var colors     = require('../config/color');
-//var MUsers     = require("./models/users");
+var Middleware = require(path.join(__dirname, '/middleware'));
+var Example    = require(path.join(__dirname, '/controllers/example'));
+//var colors   = require(path.join(__dirname, '../config/color'));
+//var MUsers   = require(path.join(__dirname, '/models/users'));
 
 module.exports = function(app, passport, error) {
 
@@ -27,6 +28,7 @@ module.exports = function(app, passport, error) {
             {
                 req.session.id = user.dataValues.id;
                 req.session.email = user.dataValues.email;
+
                 return error.http_success(req, res, { code: 200, message: info.message });
             }
 
@@ -47,8 +49,8 @@ module.exports = function(app, passport, error) {
                 return error.http_success(req, res, { code: 201, message: info.message });
             if (!user && info.message)
                 return error.http_error(req, res, { code: 400 });
-            return error.http_error(req, res, { code: 400 });
 
+            return error.http_error(req, res, { code: 400 });
         })(req, res, next);
     });
 
