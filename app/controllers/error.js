@@ -1,44 +1,36 @@
+var error     = require('../controllers/error');
+var validator = require('validator');
+
 module.exports = {
 
-    http_error: function(req, res, info)
+    testGet: function(req, res)
     {
-        switch (info.code)
-        {
-            case 401:
-                res.status(401).send({ error: true, message: "Unauthorized" });
-                break;
-
-            case 403:
-                res.status(403).send({ error: true, message: "Forbidden" });
-                break;
-
-            case 404:
-                res.status(404).send({ error: true, message: "Not Found" });
-                break;
-
-            case 409:
-                res.status(409).send({ error: true, message: "Conflict" });
-                break;
-
-            case 500:
-                res.status(500).send({ error: true, message: "Internal Server Error" });
-                break;
-
-            default:
-                res.status(400).send({ error: true, message: "Bad Request" });
-        }
+        error.http_success(req, res, { code: 200, message: "TEST GET API OK" });
     },
 
-    http_success: function(req, res, info)
+    testGetId: function(req, res)
     {
-        switch (info.code)
-        {
-            case 201:
-                res.status(201).send({ error: false, message: info.message });
-                break;
+        if (validator.isInt(req.params.id))
+            error.http_success(req, res, { code: 200, message: "TEST GET API id: " + req.params.id });
+        else
+            error.http_error(req, res, { code: 400 })
+    },
 
-            default:
-                res.status(200).send({ error: false, message: info.message, data: info.data });
-        }
+    testPost: function(req, res)
+    {
+        error.http_success(req, res, { code: 201, message: "Task created" });
+    },
+
+    testPostId: function(req, res)
+    {
+        if (validator.isInt(req.params.id))
+            error.http_success(req, res, { code: 200, message: "TEST GET API id: " + req.params.id });
+        else
+            error.http_error(req, res, { code: 400 });
+    },
+
+    node_mysql: function (req, res)
+    {
+        error.http_success(req, res, { code: 200, message: "TEST MySQL API OK" });
     }
 };

@@ -12,8 +12,11 @@ module.exports = function(app, passport, error) {
         error.http_success(req, res, { code: 200, message: "Hello World !" });
     });
 
-    app.get('/example', Example.test);
-    app.get('/example/:num', Example.testId);
+    app.get('/example', Example.testGet);
+    app.get('/example/:id', Example.testGetId);
+
+    app.post('/example', Example.testPost);
+    app.post('/example/:id', Example.testPostId);
 
 
     // =====================================
