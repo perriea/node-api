@@ -9,3 +9,5 @@ yarn.lock
 .idea/
 .tmp/
 npm-debug.log
+config/ssl/server.crt
+config/ssl/server.key
