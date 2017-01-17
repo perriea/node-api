@@ -32,8 +32,8 @@ var ports = {
 };
 
 var credentials = {
-	key: fs.readFileSync(path.join(__dirname, '/config/ssl/server.key')),
-	cert: fs.readFileSync(path.join(__dirname, '/config/ssl/server.crt'))
+    key: fs.readFileSync(path.join(__dirname, '/config/ssl/server.key')),
+    cert: fs.readFileSync(path.join(__dirname, '/config/ssl/server.crt'))
 };
 
 
@@ -52,10 +52,10 @@ app.use(morgan("common"));
 
 // Recuperation des POST
 // parse application/json 
-app.use(bodyParser.json()); 
+app.use(bodyParser.json());
 
 // parse application/vnd.api+json as json
-app.use(bodyParser.json({ type: 'application/vnd.api+json' })); 
+app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -65,9 +65,9 @@ app.use(cookieParser());
 
 // accept cross domain *
 app.use(cors({
-	origin: ["*"],
-	methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-	allowedHeaders: ["Content-Type", "Authorization"]
+    origin: ["*"],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
@@ -87,8 +87,8 @@ app.use(helmet());
 // Auth
 // init de session Passport
 app.use(expressSession({
-	secret: 'RANDOM',
-	resave: true,
+    secret: 'RANDOM',
+    resave: true,
     saveUninitialized: true
 }));
 app.use(passport.initialize());
@@ -105,9 +105,9 @@ require('./config/passport')(passport);
 console.log(colors.info('RESTful API running, PID : ' + process.pid));
 
 /*httpServer = http.createServer(function (req, res) {
-	res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
-	res.end();
-}).listen(ports.http);*/
+ res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+ res.end();
+ }).listen(ports.http);*/
 
 // HTTP/1.1
 http.createServer(app).listen(ports.http, () => { console.log(colors.verbose('Port serveur HTTP (API) : ' + ports.http)); });
