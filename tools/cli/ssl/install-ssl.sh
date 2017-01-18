@@ -1,5 +1,4 @@
 #!/bin/bash
 
-cd ../../../config/ssl
-openssl req -x509 -newkey rsa:2048 -keyout server.key -out server.crt -days 365
-openssl rsa -in server.key -out newserver.key && mv newserver.key server.key
+openssl req -nodes -new -x509 -newkey rsa:4096 -keyout server.key -out server.crt -days 365 -subj "/C=FR/ST=IDF/L=Paris/O=My Inc/OU=DevOps/CN=localhost/emailAddress=example@gmail.com"
+mv server.crt config/ssl/ && mv server.key config/ssl/

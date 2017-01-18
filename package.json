@@ -6,7 +6,8 @@
   "main": "server.js",
   "scripts": {
     "cluster": "node cluster.js",
-    "test": "mocha test/test.js"
+    "test": "mocha test/test.js",
+    "ssl": "./tools/cli/ssl/install-ssl.sh"
   },
   "author": "PERRIER Aurelien",
   "license": "MIT",
