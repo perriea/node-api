@@ -6,7 +6,7 @@
 
 #### OpenSSL
 
-Exécuter le script suivant : `/Node-API/tools/cli/shell/ssl/install-ssl.sh` pour générer les certificats SSL.
+Exécuter le script suivant : `/Node-API/tools/ssl/install.sh` pour générer les certificats SSL.
 
 Les certificats seront placés dans `/Node-API/config/ssl/`.
 
@@ -34,7 +34,9 @@ var options = {
 ### Docker
 
 Au préalable [installer Docker](https://docs.docker.com/engine/installation/) selon votre OS. 
-Sur un terminal, executer la commande `docker build -t perriea/node-web-app .` puis pour lancer `docker run -p 8080:8080 -p 4433:4433 -d perriea/node-web-app`.
+
+* Récupérer le container avec la commande `docker pull perriea/node-api`.
+* Puis sur le terminal `docker run -p 8080:8080 -p 4433:4433 -d perriea/node-web-app`.
 
 
 ### Démarrage de l'application
@@ -69,6 +71,7 @@ Ce projet a été réalisé avec les outils suivant.
 * Sequelize (ORM MySQL),
 * Mocha (test unitaires),
 * ReCluster (serveur Web clusterisé ZeroDown)
+* Docker
 
 
 Tout est déjà en place il n'y a pas plus qu'à utiliser :)
