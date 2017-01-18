@@ -10,7 +10,6 @@ WORKDIR /usr/src/app
 # Install app dependencies
 ADD ./package.json /usr/src/app/
 RUN npm install
-RUN npm install -g pm2
 
 # Bundle app source
 COPY . /usr/src/app
