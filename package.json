@@ -1,12 +1,13 @@
 {
   "name": "Node-API",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "homepage": "https://github.com/perriea/Node-API/blob/dev/README.md",
   "description": "Simple Node JS Framework",
   "main": "server.js",
   "scripts": {
     "cluster": "node cluster.js",
-    "test": "mocha test/test.js"
+    "test": "mocha test/test.js",
+    "ssl": "./tools/ssl/install.sh"
   },
   "author": "PERRIER Aurelien",
   "license": "MIT",
