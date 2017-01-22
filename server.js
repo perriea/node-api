@@ -1,7 +1,6 @@
 // Framework ExpressJS
 var express        = require('express');
-var robots          = require('express-robots');
-var pmx            = require('pmx').init({ http : true });
+var robots         = require('express-robots');
 
 // HTTP/1.1 ou HTTP/2 (spdy)
 var http           = require('http');
@@ -24,6 +23,7 @@ var app            = express();
 
 var colors         = require(path.join(__dirname, '/config/color'));
 var error          = require(path.join(__dirname, '/app/controllers/error'));
+
 
 // var ports + SSL
 var ports = {
@@ -104,16 +104,15 @@ require('./config/passport')(passport);
 
 console.log(colors.info('RESTful API running, PID : ' + process.pid));
 
-/*httpServer = http.createServer(function (req, res) {
- res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
- res.end();
- }).listen(ports.http);*/
-
 // HTTP/1.1
-http.createServer(app).listen(ports.http, () => { console.log(colors.verbose('Port serveur HTTP (API) : ' + ports.http)); });
-https.createServer(credentials, app).listen(ports.https, () => { console.log(colors.verbose('Port serveur HTTPS (API) : ' + ports.https)); });
+http.createServer(function (req, res) {
+    res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+    res.end();
+}).listen(ports.http, () => { console.log(colors.verbose('Port serveur HTTP (API) : ' + ports.http)); });
+
+//https.createServer(credentials, app).listen(ports.https, () => { console.log(colors.verbose('Port serveur HTTPS (API) : ' + ports.https)); });
 
 // HTTP/2
-//httpsServer = spdy.createServer(credentials, app).listen(ports.https);
+httpsServer = spdy.createServer(credentials, app).listen(ports.https, () => { console.log(colors.verbose('Port serveur HTTPS (API) : ' + ports.https)); });
 
 exports = module.exports = app;
