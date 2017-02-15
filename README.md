@@ -35,8 +35,17 @@ var options = {
 
 Au préalable [installer Docker](https://docs.docker.com/engine/installation/) selon votre OS. 
 
-* Récupérer le container avec la commande `docker pull perriea/node-api`.
-* Puis sur le terminal `docker run -p 8080:8080 -p 4433:4433 -d perriea/node-web-app`.
+#### Build image
+
+* Créer la nouvelle image en executant la commande `docker build -t <your_image_name> .`.
+* Une nouvelle fois sur le terminal `docker run -p 8080:8080 -p 4433:4433 -d <your_image_name>`.
+
+
+#### DockerHub
+
+A chaque nouveau commit, une nouvelle build est réalisée sur DockerHub :
+* Récupérer le container avec la commande `docker pull perriea/node-api` (`:tag` disponibles : dev, master, latest).
+* Sur le terminal `docker run -p 8080:8080 -p 4433:4433 -d perriea/node-api`.
 
 
 ### Démarrage de l'application
