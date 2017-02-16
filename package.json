@@ -1,12 +1,12 @@
 {
   "name": "Node-API",
   "version": "2.1.0",
-  "homepage": "https://github.com/perriea/Node-API/blob/dev/README.md",
+  "homepage": "https://github.com/perriea/Node-API/blob/master/README.md",
   "description": "Simple Node JS Framework",
   "main": "server.js",
   "scripts": {
     "cluster": "node cluster.js",
-    "test": "mocha test/test.js",
+    "test": "mocha ./test/test.js",
     "ssl": "./tools/ssl/install.sh"
   },
   "author": "PERRIER Aurelien",
@@ -28,7 +28,6 @@
     "express": "~4.5.1",
     "express-robots": "^0.1.6",
     "express-session": "^1.14.0",
-    "fs": "0.0.1-security",
     "graceful-fs": "^4.1.11",
     "helmet": "^3.1.0",
     "method-override": "~2.0.2",
