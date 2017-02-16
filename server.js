@@ -1,13 +1,11 @@
 // Framework ExpressJS
 var express        = require('express');
-var robots          = require('express-robots');
-var pmx            = require('pmx').init({ http : true });
 
 // HTTP/1.1 ou HTTP/2 (spdy)
 var http           = require('http');
-var https          = require('https');
 var spdy		   = require('spdy');
 
+// Tools
 var path           = require('path');
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
@@ -17,13 +15,13 @@ var cors           = require('cors');
 var passport       = require('passport');
 var expressSession = require('express-session');
 var fs             = require('fs');
-var favicon        = require('serve-favicon');
 var compression    = require("compression");
 var helmet         = require("helmet");
 var app            = express();
 
 var colors         = require(path.join(__dirname, '/config/color'));
 var error          = require(path.join(__dirname, '/app/controllers/error'));
+
 
 // var ports + SSL
 var ports = {
@@ -45,7 +43,8 @@ app.locals.email = 'me@myapp.com';
 
 // configuration ===========================================
 
-app.use(robots(path.join(__dirname, '/public/robots.txt')));
+// favicon + robots.txt + docs
+app.use('/', express.static(path.join(__dirname, '/public')));
 
 // show logs in console
 app.use(morgan("common"));
@@ -72,10 +71,6 @@ app.use(cors({
 
 // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(methodOverride('X-HTTP-Method-Override'));
-
-// favicon
-app.use(express.static(path.join(__dirname, '/public')));
-app.use(favicon(path.join(__dirname, '/public/favicon.ico')));
 
 // compression => fast and light request
 app.use(compression());
@@ -104,16 +99,13 @@ require('./config/passport')(passport);
 
 console.log(colors.info('RESTful API running, PID : ' + process.pid));
 
-/*httpServer = http.createServer(function (req, res) {
- res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
- res.end();
- }).listen(ports.http);*/
-
 // HTTP/1.1
-http.createServer(app).listen(ports.http, () => { console.log(colors.verbose('Port serveur HTTP (API) : ' + ports.http)); });
-https.createServer(credentials, app).listen(ports.https, () => { console.log(colors.verbose('Port serveur HTTPS (API) : ' + ports.https)); });
+http.createServer(function (req, res) {
+    res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+    res.end();
+}).listen(ports.http, () => { console.log(colors.verbose('Port serveur HTTP (API) : ' + ports.http)); });
 
 // HTTP/2
-//httpsServer = spdy.createServer(credentials, app).listen(ports.https);
+httpsServer = spdy.createServer(credentials, app).listen(ports.https, () => { console.log(colors.verbose('Port serveur HTTPS (API) : ' + ports.https)); });
 
 exports = module.exports = app;

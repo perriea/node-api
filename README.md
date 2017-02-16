@@ -6,7 +6,7 @@
 
 #### OpenSSL
 
-Exécuter le script suivant : `/Node-API/tools/ssl/install.sh` pour générer les certificats SSL.
+Exécuter la commande suivante : `npm run ssl` pour générer les certificats SSL.
 
 Les certificats seront placés dans `/Node-API/config/ssl/`.
 
@@ -35,22 +35,31 @@ var options = {
 
 Au préalable [installer Docker](https://docs.docker.com/engine/installation/) selon votre OS. 
 
-* Récupérer le container avec la commande `docker pull perriea/node-api`.
-* Puis sur le terminal `docker run -p 8080:8080 -p 4433:4433 -d perriea/node-web-app`.
+#### Build image
+
+* Créer la nouvelle image en executant la commande `docker build -t <your_image_name> .`.
+* Une nouvelle fois sur le terminal `docker run -p 8080:8080 -p 4433:4433 -d <your_image_name>`.
+
+
+#### DockerHub
+
+A chaque nouveau commit, une nouvelle build est réalisée sur DockerHub :
+* Récupérer le container avec la commande `docker pull perriea/node-api` (`:tag` disponibles : dev, master, latest).
+* Sur le terminal `docker run -p 8080:8080 -p 4433:4433 -d perriea/node-api`.
 
 
 ### Démarrage de l'application
 
 #### Développement
 
-Lancer l'application avec la commande : `nodemon ./server.js`
+Lancer l'application avec la commande : `nodemon server.js`
 
 Le serveur se relancera à chaque modification du code.
 
 
 #### Basic
 
-Lancer l'application avec la commande : `npm start`
+Lancer l'application avec la commande : `npm start` ou `node server.js`
 
 
 #### Production
@@ -64,7 +73,7 @@ Un thread par coeur sera crée, exemple : 4 coeurs = 4 threads.
 
 ## Construction du projet
 
-Ce projet a été réalisé avec les outils suivant.
+Ce projet a été réalisé avec les outils suivant :
 * Node JS,
 * Express,
 * MySQL,
