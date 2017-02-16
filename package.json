@@ -52,8 +52,6 @@
     "describe": "^1.2.0",
     "log": "^1.4.0",
     "mocha": "^3.2.0",
-    "nodemon": "^1.11.0",
-    "raml2html": "^4.0.4",
     "request": "^2.79.0",
     "sequelize-cli": "^2.4.0"
   }
