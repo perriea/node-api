@@ -1,11 +1,11 @@
 // Framework ExpressJS
 var express        = require('express');
-var robots         = require('express-robots');
 
 // HTTP/1.1 ou HTTP/2 (spdy)
 var http           = require('http');
 var spdy		   = require('spdy');
 
+// Tools
 var path           = require('path');
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
@@ -15,7 +15,6 @@ var cors           = require('cors');
 var passport       = require('passport');
 var expressSession = require('express-session');
 var fs             = require('fs');
-var favicon        = require('serve-favicon');
 var compression    = require("compression");
 var helmet         = require("helmet");
 var app            = express();
@@ -44,7 +43,8 @@ app.locals.email = 'me@myapp.com';
 
 // configuration ===========================================
 
-app.use(robots(path.join(__dirname, '/public/robots.txt')));
+// favicon + robots.txt + docs
+app.use('/', express.static(path.join(__dirname, '/public')));
 
 // show logs in console
 app.use(morgan("common"));
@@ -71,10 +71,6 @@ app.use(cors({
 
 // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(methodOverride('X-HTTP-Method-Override'));
-
-// favicon
-app.use(express.static(path.join(__dirname, '/public')));
-app.use(favicon(path.join(__dirname, '/public/favicon.ico')));
 
 // compression => fast and light request
 app.use(compression());
