@@ -13,8 +13,8 @@ node_js:
   - "4"
   - "0.12"
 before_install:
-  - apt-get update
-  - apt-get install yarn
+  - sudo apt-get update
+  - sudo apt-get install yarn
 install:
   - yarn
 before_script:
