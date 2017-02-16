@@ -4,7 +4,6 @@ var robots         = require('express-robots');
 
 // HTTP/1.1 ou HTTP/2 (spdy)
 var http           = require('http');
-var https          = require('https');
 var spdy		   = require('spdy');
 
 var path           = require('path');
@@ -109,8 +108,6 @@ http.createServer(function (req, res) {
     res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
     res.end();
 }).listen(ports.http, () => { console.log(colors.verbose('Port serveur HTTP (API) : ' + ports.http)); });
-
-//https.createServer(credentials, app).listen(ports.https, () => { console.log(colors.verbose('Port serveur HTTPS (API) : ' + ports.https)); });
 
 // HTTP/2
 httpsServer = spdy.createServer(credentials, app).listen(ports.https, () => { console.log(colors.verbose('Port serveur HTTPS (API) : ' + ports.https)); });
