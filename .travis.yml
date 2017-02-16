@@ -3,10 +3,13 @@ language: node_js
 cache:
   yarn: true
 node_js:
+  - "node"
   - "6"
-  - "6.1"
-  - "5.11"
+  - "5"
+  - "4"
+  - "0.12"
 before_script:
   - npm install -g yarn
+  - npm run ssl
 install: yarn
 script: npm test
