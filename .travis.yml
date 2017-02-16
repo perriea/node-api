@@ -2,14 +2,21 @@ sudo: required
 language: node_js
 cache:
   yarn: true
+  directories:
+      - node_modules
+notifications:
+  email: false
 node_js:
   - "node"
   - "6"
   - "5"
   - "4"
   - "0.12"
-before_script:
+before_install:
   - npm install -g yarn
+install:
+  - yarn
+before_script:
   - npm run ssl
-install: yarn
-script: npm test
+script:
+  - npm test
