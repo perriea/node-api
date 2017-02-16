@@ -6,7 +6,7 @@
 
 #### OpenSSL
 
-Exécuter le script suivant : `/Node-API/tools/ssl/install.sh` pour générer les certificats SSL.
+Exécuter la commande suivante : `npm run ssl` pour générer les certificats SSL.
 
 Les certificats seront placés dans `/Node-API/config/ssl/`.
 
@@ -52,14 +52,14 @@ A chaque nouveau commit, une nouvelle build est réalisée sur DockerHub :
 
 #### Développement
 
-Lancer l'application avec la commande : `nodemon ./server.js`
+Lancer l'application avec la commande : `nodemon server.js`
 
 Le serveur se relancera à chaque modification du code.
 
 
 #### Basic
 
-Lancer l'application avec la commande : `npm start`
+Lancer l'application avec la commande : `npm start` ou `node server.js`
 
 
 #### Production
@@ -73,7 +73,7 @@ Un thread par coeur sera crée, exemple : 4 coeurs = 4 threads.
 
 ## Construction du projet
 
-Ce projet a été réalisé avec les outils suivant.
+Ce projet a été réalisé avec les outils suivant :
 * Node JS,
 * Express,
 * MySQL,
