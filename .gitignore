@@ -8,5 +8,4 @@ config/ssl/key.pem
 .idea/
 .tmp/
 npm-debug.log
-config/ssl/server.crt
-config/ssl/server.key
+config/ssl/
