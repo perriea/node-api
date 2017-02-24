@@ -4,7 +4,7 @@ var Role = require('./role');
 var Page = require('./page');
 var Pref = require('./preferences');
 
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 var colors = require('../../config/color');
 
 var sequelize = db.sequelize;
