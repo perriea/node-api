@@ -12,11 +12,15 @@ module.exports = function(app, passport, error) {
         error.http_success(req, res, { code: 200, message: "Hello World !" });
     });
 
-    app.get('/example', Example.testGet);
-    app.get('/example/:id', Example.testGetId);
+    app.route('/example')
+        .get(Example.testGet)
+        .post(Example.testPost);
 
-    app.post('/example', Example.testPost);
-    app.post('/example/:id', Example.testPostId);
+    app.route('/example/:id')
+        .get(Middleware.isLoggedIn, Example.testGetId)
+        .post(Middleware.isLoggedIn, Example.testPostId)
+        .put(Middleware.isLoggedIn, Example.testPutId)
+        .delete(Middleware.isLoggedIn, Example.testDeleteId);
 
 
     // =====================================
@@ -71,7 +75,7 @@ module.exports = function(app, passport, error) {
     });
 
     // All routes not found => 404
-    app.get('*', function(req, res) {
-        error.http_error(req, res, { code: 404, message: "Not found" });
+    app.all('*', function (req, res) {
+        error.http_error(req, res, { code: 404, message: "Not found" })
     });
 };

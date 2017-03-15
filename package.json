@@ -19,7 +19,7 @@
     "url": "https://github.com/perriea/Node-API/issues"
   },
   "dependencies": {
-    "bcrypt": "^0.8.7",
+    "bcryptjs": "^2.4.3",
     "body-parser": "~1.4.2",
     "colors": "^1.1.2",
     "compression": "^1.6.2",
