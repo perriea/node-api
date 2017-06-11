@@ -1,22 +1,19 @@
-FROM node:boron
+FROM node:8.1.0-alpine
 
-RUN apt-get update
-RUN apt-get upgrade -y
+RUN apk add --no-cache --update py-pip python openssl
 
 # Create app directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-
-# Install app dependencies
-ADD ./package.json /usr/src/app/
-RUN npm install -g yarn
-RUN yarn install
+RUN mkdir -p /srv/app
+WORKDIR /srv/app
 
 # Bundle app source
-COPY . /usr/src/app
+COPY . /srv/app
 
-# Create cert SSL
-RUN npm run ssl
+# Install packages
+RUN npm install
+
+# Install SSL
+RUN sh $(pwd)/tools/ssl/install.sh
 
 EXPOSE 8080 4433
 CMD [ "npm", "start" ]
