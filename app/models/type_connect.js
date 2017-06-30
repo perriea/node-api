@@ -1,7 +1,7 @@
-var db = require('../../config/db');
+var db = require("../../config/db")
 var access = db.access;
 
-var Type_connect = access.define('c_type_connect', {
+var Type_connect = access.define("c_type_connect", {
 	type: {
       	type: access.Sequelize.STRING(30),
       	allowNull: false
@@ -13,6 +13,6 @@ var Type_connect = access.define('c_type_connect', {
 			isJSON: true
 		}
 	}
-}, { timestamps: false });
+}, { timestamps: false })
 
-module.exports = Type_connect;
+module.exports = Type_connect

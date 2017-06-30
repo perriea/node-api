@@ -1,7 +1,7 @@
-var db = require('../../config/db');
+var db = require("../../config/db")
 var access = db.access;
 
-var Page = access.define('c_page', {
+var Page = access.define("c_page", {
     name: {
         type: access.Sequelize.STRING(50),
         allowNull: false

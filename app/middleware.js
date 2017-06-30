@@ -1,5 +1,4 @@
-var path  = require('path');
-var error = require(path.join(__dirname, '/controllers/error'));
+var error = require("./controllers/error")
 
 module.exports = {
 

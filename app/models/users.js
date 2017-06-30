@@ -1,17 +1,17 @@
-var db = require('../../config/db');
-var Type_connect = require('./type_connect');
-var Role = require('./role');
-var Page = require('./page');
-var Pref = require('./preferences');
+var db = require("../../config/db")
+var Type_connect = require("./type_connect")
+var Role = require("./role")
+var Page = require("./page")
+var Pref = require("./preferences")
 
-var bcrypt = require('bcryptjs');
-var colors = require('../../config/color');
+var bcrypt = require("bcryptjs")
+var colors = require("../../config/color")
 
-var sequelize = db.sequelize;
-var access = db.access;
-var methods = { generateHash: null, validPassword: null };
+var sequelize = db.sequelize
+var access = db.access
+var methods = { generateHash: null, validPassword: null }
 
-var TUsers = access.define('c_users', {
+var TUsers = access.define("c_users", {
 
     authenticate_id: {
         type: access.Sequelize.INTEGER(1),
@@ -34,34 +34,34 @@ var TUsers = access.define('c_users', {
       	type: access.Sequelize.STRING(255),
       	allowNull: true
   	}
-}, { timestamps: false });
+}, { timestamps: false })
 
 // methods ======================
 // generating a hash
 methods.generateHash = function(password) {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null)
 };
 
 // checking if password is valid
 methods.validPassword = function(password, user) {
-	return bcrypt.compareSync(password, user.password, null);
+	return bcrypt.compareSync(password, user.password, null)
 };
 
-Role.hasOne(TUsers, { foreignKey : 'role_id', onDelete: 'NO ACTION' });
-Type_connect.hasOne(TUsers, { foreignKey : 'authenticate_id', onDelete: 'NO ACTION' });
+Role.hasOne(TUsers, { foreignKey : "role_id", onDelete: "NO ACTION" })
+Type_connect.hasOne(TUsers, { foreignKey : "authenticate_id", onDelete: "NO ACTION" })
 //Pref.hasMany(TUsers, { foreignKey: "user_id" });
-Page.hasOne(Pref, { foreignKey: 'page_id', onDelete: 'NO ACTION'});
+Page.hasOne(Pref, { foreignKey: "page_id", onDelete: "NO ACTION"})
 
 db.access.authenticate().then(function(err) {
-    console.log(colors.info('Connection has been established successfully.'));
-    Type_connect.sync();
-    Role.sync();
-    Page.sync();
-    Pref.sync();
-    TUsers.sync();
+    console.log(colors.info("Connection has been established successfully."))
+    Type_connect.sync()
+    Role.sync()
+    Page.sync()
+    Pref.sync()
+    TUsers.sync()
 
 }).catch(function (err) {
-    console.log(colors.error('MySQL:' + err.message));
+    console.log(colors.error('MySQL:' + err.message))
 });
 
-module.exports = { TUsers, Pref, Type_connect, Role, Page, methods };
+module.exports = { TUsers, Pref, Type_connect, Role, Page, methods }
