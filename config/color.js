@@ -1,4 +1,4 @@
-var colors = require('colors/safe');
+var colors = require('colors/safe')
 
 // set theme
 colors.setTheme({
@@ -16,6 +16,6 @@ colors.setTheme({
     post: ['blue', 'italic'],
     put: ['orange', 'italic'],
     delete: ['red', 'italic']
-});
+})
 
-module.exports = colors;
+module.exports = colors

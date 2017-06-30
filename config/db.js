@@ -1,5 +1,5 @@
 // config/database.js
-var Sequelize = require('sequelize');
+var Sequelize = require('sequelize')
 
 // config sequelize - MySQL
 // Active Log to loggin: true
@@ -30,15 +30,15 @@ var config_sequelize = {
             idle: 10000
         }
     }
-};
+}
 
 // connexion database
-var sequelize = new Sequelize(config_sequelize.database, config_sequelize.user, config_sequelize.password, config_sequelize.config);
+var sequelize = new Sequelize(config_sequelize.database, config_sequelize.user, config_sequelize.password, config_sequelize.config)
 
 // var access resources
 var db = {
 	access: sequelize,
 	sequelize: Sequelize
-};
+}
 
-module.exports = db;
+module.exports = db
