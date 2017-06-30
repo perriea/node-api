@@ -1,5 +1,5 @@
 var db = require("../../config/db")
-var access = db.access;
+var access = db.access
 
 var Type_connect = access.define("c_type_connect", {
 	type: {

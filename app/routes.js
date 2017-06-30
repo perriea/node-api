@@ -1,10 +1,10 @@
 var sequelize  = require("sequelize")
 var path       = require("path")
 
-var Middleware = require(path.join(__dirname, "/middleware"))
-var Example    = require(path.join(__dirname, "/controllers/example"))
-//var colors   = require(path.join(__dirname, '../config/color'))
-//var MUsers   = require(path.join(__dirname, '/models/users'))
+var Middleware = require("./middleware")
+var Example    = require("./controllers/example")
+//var colors   = require("../config/color")
+//var MUsers   = require("./models/users")
 
 module.exports = function(app, passport, error) {
 
@@ -27,15 +27,12 @@ module.exports = function(app, passport, error) {
     // LOGIN ===============================
     // =====================================
     app.post("/api/auth/login", function(req, res, next) {
-        passport.authenticate("local-login", function(err, user, info)
-        {
-            if (err)
-            {
+        passport.authenticate("local-login", function(err, user, info) {
+            if (err) {
                 error.http_error(req, res, { code: 500 })
             }
                 
-            if (user)
-            {
+            if (user) {
                 req.session.id = user.dataValues.id
                 req.session.email = user.dataValues.email
 

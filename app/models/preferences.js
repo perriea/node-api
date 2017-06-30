@@ -1,5 +1,5 @@
 var db = require("../../config/db")
-var access = db.access;
+var access = db.access
 
 var Pref = access.define("c_preferences", {
     user_id: {
@@ -14,6 +14,6 @@ var Pref = access.define("c_preferences", {
         type: access.Sequelize.STRING(1000),
         allowNull: false
     }
-}, { timestamps: true });
+}, { timestamps: true })
 
-module.exports = Pref;
+module.exports = Pref
