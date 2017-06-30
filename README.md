@@ -1,5 +1,7 @@
 # My App ExpressJS
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f6c1038be450483f94ed950c45b0a3f3)](https://www.codacy.com/app/a.perrier89/node-api?utm_source=github.com&utm_medium=referral&utm_content=perriea/node-api&utm_campaign=badger)
+
 ## Installation
 
 ### TLS/SSL (HTTPS)
