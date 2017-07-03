@@ -1,4 +1,4 @@
-# My App ExpressJS
+# My App ExpressJS [![Build Status](https://travis-ci.org/perriea/node-api.svg?branch=master)](https://travis-ci.org/perriea/node-api) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f6c1038be450483f94ed950c45b0a3f3)](https://www.codacy.com/app/a.perrier89/node-api?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=perriea/node-api&amp;utm_campaign=Badge_Grade)
 
 ## Installation
 
@@ -6,18 +6,15 @@
 
 #### OpenSSL
 
-Exécuter la commande suivante : `npm run ssl` pour générer les certificats SSL.
-
-Les certificats seront placés dans `/Node-API/config/ssl/`.
-
+Run the command in your Terminal `npm run ssl` to generate SSL certificates.   
+The certificates shall be placed in `/Node-API/config/ssl/`.
 
 #### Let's Encrypt
 
-Installer Let's Encrypt via le gestionnaire de paquet `apt` en effectuant la commande : `apt-get install letsencrypt`.
+Install Let's Encrypt via the `apt` package manager by issuing the command: `apt-get install letsencrypt`.   
+Then, make the command to generate the certificates : `letsencrypt-auto certonly --manual --email admin@example.com -d example.com`
 
-Puis effectuer la commande pour générer les certificats : `letsencrypt-auto certonly --manual --email admin@example.com -d example.com`
-
-Affecter les certificats sont déclarés dans le server comme ceci :
+Assign certificates are declared in file`server.js` like this :
 
 ``` js
 var https = require('https');
@@ -30,59 +27,52 @@ var options = {
 };
 ```
 
-
 ### Docker
 
-Au préalable [installer Docker](https://docs.docker.com/engine/installation/) selon votre OS. 
+First [install Docker](https://docs.docker.com/engine/installation/).
 
 #### Build image
 
-* Créer la nouvelle image en executant la commande `docker build -t <your_image_name> .`.
-* Une nouvelle fois sur le terminal `docker run -p 8080:8080 -p 4433:4433 -d <your_image_name>`.
-
+* Create the new image by executing the command `docker build -t <your_image_name> .`,
+* Once again on the console `docker run -p 8080:8080 -p 4433:4433 -d <your_image_name>`.
 
 #### DockerHub
 
-A chaque nouveau commit, une nouvelle build est réalisée sur DockerHub :
-* Récupérer le container avec la commande `docker pull perriea/node-api` (`:tag` disponibles : dev, master, latest).
-* Sur le terminal `docker run -p 8080:8080 -p 4433:4433 -d perriea/node-api`.
+A new image is created on the Docker Hub with each new commit:
+* Download the remote image with the command `docker pull perriea/node-api`,
+* On the console `docker run -p 8080:8080 -p 4433:4433 -d perriea/node-api`.
 
 
-### Démarrage de l'application
+### Starting the application
 
-#### Développement
+#### Development
 
-Lancer l'application avec la commande : `nodemon server.js`
-
-Le serveur se relancera à chaque modification du code.
-
+Launch the application with the command : `nodemon server.js`   
+The server will restart each time the code is changed.
 
 #### Basic
 
-Lancer l'application avec la commande : `npm start` ou `node server.js`
-
+Launch the application with the command: `npm start` or ` node server.js`
 
 #### Production
 
-Installer `forever` ou `pm2` pour lancer le serveur en background.
+Install `forever` or` pm2` to start the server in background.   
+Launch the application with the command: `pm2 start cluster.js`   
+One thread per core will be created, example: 4 cores = 4 threads.
 
-Lancer l'application avec la commande : `pm2 start cluster.js`
+## Constitution
 
-Un thread par coeur sera crée, exemple : 4 coeurs = 4 threads.
-
-
-## Construction du projet
-
-Ce projet a été réalisé avec les outils suivant :
-* Node JS,
+This project was realized with the following tools :
+* NodeJS,
 * Express,
-* MySQL,
-* Sequelize (ORM MySQL),
-* Mocha (test unitaires),
-* ReCluster (serveur Web clusterisé ZeroDown)
+* Sequelize (ORM),
+* Request, Mocha (unit tests),
+* ReCluster (Clustered Web server)
 * Docker
 
+Everything is already in place there is no more than to use :)
 
-Tout est déjà en place il n'y a pas plus qu'à utiliser :)
+## License
 
-Bon dev !
+**The MIT License (MIT)**   
+Copyright (c) 2016-2017 Aurelien PERRIER
