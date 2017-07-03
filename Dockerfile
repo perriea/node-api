@@ -1,6 +1,7 @@
-FROM node:8.1.0-alpine
+FROM node:8.1.2-alpine
+MAINTAINER Aurelien PERRIER <a.perrier89@gmail.com>
 
-RUN apk add --no-cache --update py-pip python openssl
+RUN apk add --no-cache --update openssl
 
 # Create app directory
 RUN mkdir -p /srv/app
@@ -13,7 +14,7 @@ COPY . /srv/app
 RUN npm install
 
 # Install SSL
-RUN sh $(pwd)/tools/ssl/install.sh
+RUN sh "$(pwd)/tools/ssl/install.sh"
 
 EXPOSE 8080 4433
-CMD [ "npm", "start" ]
+CMD ["npm", "start"]
