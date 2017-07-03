@@ -1,23 +1,30 @@
-sudo: required
 language: node_js
-cache:
-  yarn: true
-  directories:
-      - node_modules
-notifications:
-  email: false
+
+os:
+  - linux
+
+services:
+  - docker
+
 node_js:
   - "node"
+  - "7"
   - "6"
-  - "5"
-  - "4"
-  - "0.12"
-before_install:
-  - sudo apt-get update
-  - sudo apt-get install yarn
-install:
-  - yarn
+
 before_script:
   - npm run ssl
+
 script:
   - npm test
+
+notifications:
+  slack:
+    rooms:
+      secure: MPEzimvqx8dvg8I9w2vtJ1T5LTXACn9n5iqjmI0aR5ilaDNiD773I+iRwXqjjIZSwTftk7ud+mmvnVOWl06RSh9UmuJ6fRyDU1oApx7ggHkxC/E/YF2BHT2L57aVL3TOrXLpzjDUyiUWupfEMcCMwfKP9gmPy7Y7TvN9qCZat6HUSnwp1gd2zHazFWolLv+JL6607BsRqKzIm8ku9QmAoVJs60n6B2K7COzHynHYugYXz8+GxFMbI+UAZZilySOAXl6f+i4boiW07MpKViu3024Wb7O+WDNTo2gaeBXOWFpbu0h779otFwvCuyWgCWFCcs2k5GSH15NluKTUZ+VcLHqEmQNpY/VYlvGzmqPD6ABwjjxNSwKNKV+w/LGCAFfUasgevNGY51gAqb/o5XlPBiWrMnQ9jOT9n7gag3laY48ewa3RY6Z/TUi+K92Y0nGO9uAMJl9d0Jarub/hYVOdEMYC9aP99RrxD6z8Bs/jNQ4wIvPSRDlqz+pAdYR0V9sYJJietNURXhd27rCuIbhTWrUbv3PznoH2+BAAyAM9sNetZD9G19qA1dEPic9RGTJ90oN1JAbPvT+brWOOiH1nG2WMkT0dWx6CcsxUsrkqP6zULmlx4fOiAqn5gM0UtZXgPsBtc9lBQR/LnEH9pBg2dIf/rB09kanmcJDMgHGXt4Y=
+    on_success: always
+    on_failure: always
+  email:
+    recipients:
+    - a.perrier89@gmail.com
+    on_success: change
+    on_failure: always
