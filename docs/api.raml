@@ -1,0 +1,191 @@
+#%RAML 1.0
+---
+title: New
+baseUri: http://api.samplehost.com/{version}
+schemas:
+  - hello_word: !include schemas/hello_word.json
+/:
+  get:
+    responses:
+      200:
+        description: Hello world !
+        body:
+          application/json:
+            schema: hello_word
+            example: !include ./examples/hello_word.json    
+/example:
+  get:
+    responses:
+      200:
+        description: Hello world !
+        body:
+          application/json:
+            schema: hello_word
+            example: !include ./examples/hello_word.json
+      400:
+        description: Error 400
+        body:
+          application/json:
+            schema: 400
+            example: !include ./errors/404.json
+      500:
+        description: Error 500
+        body:
+          application/json:
+            schema: 500
+            example: !include ./errors/500.json
+  post:
+    responses:
+      200:
+        description: Hello world !
+        body:
+          application/json:
+            schema: hello_word
+            example: !include ./examples/hello_word.json
+      400:
+        description: Error 400
+        body:
+          application/json:
+            schema: 400
+            example: !include ./errors/404.json
+      500:
+        description: Error 500
+        body:
+          application/json:
+            schema: 500
+            example: !include ./errors/500.json
+  /{Id}:
+    get:
+      responses:
+        200:
+          description: Hello world !
+          body:
+            application/json:
+              schema: hello_word
+              example: !include ./examples/hello_word.json
+        400:
+          description: Error 400
+          body:
+            application/json:
+              schema: 400
+              example: !include ./errors/404.json
+        500:
+          description: Error 500
+          body:
+            application/json:
+              schema: 500
+              example: !include ./errors/500.json
+    put:
+      responses:
+        200:
+          description: Hello world !
+          body:
+            application/json:
+              schema: hello_word
+              example: !include ./examples/hello_word.json
+        400:
+          description: Error 400
+          body:
+            application/json:
+              schema: 400
+              example: !include ./errors/404.json
+        500:
+          description: Error 500
+          body:
+            application/json:
+              schema: 500
+              example: !include ./errors/500.json
+    delete:
+      responses:
+        200:
+          description: Hello world !
+          body:
+            application/json:
+              schema: hello_word
+              example: !include ./examples/hello_word.json
+        400:
+          description: Error 400
+          body:
+            application/json:
+              schema: 400
+              example: !include ./errors/404.json
+        500:
+          description: Error 500
+          body:
+            application/json:
+              schema: 500
+              example: !include ./errors/500.json
+/auth:
+  /login:
+    post:
+      responses:
+        200:
+          description: Hello world !
+          body:
+            application/json:
+              schema: hello_word
+              example: !include ./examples/hello_word.json
+        400:
+          description: Error 400
+          body:
+            application/json:
+              schema: 400
+              example: !include ./errors/404.json
+        500:
+          description: Error 500
+          body:
+            application/json:
+              schema: 500
+              example: !include ./errors/500.json
+  /signup:
+    post:
+      responses:
+        200:
+          description: Hello world !
+          body:
+            application/json:
+              schema: hello_word
+              example: !include ./examples/hello_word.json
+        400:
+          description: Error 400
+          body:
+            application/json:
+              schema: 404
+              example: !include ./errors/404.json
+        500:
+          description: Error 500
+          body:
+            application/json:
+              schema: 500
+              example: !include ./errors/500.json
+  /logout:
+    get:
+      responses:
+        200:
+          description: Hello world !
+          body:
+            application/json:
+              schema: hello_word
+              example: !include ./examples/hello_word.json
+        400:
+          description: Error 400
+          body:
+            application/json:
+              schema: 400
+              example: !include ./errors/400.json
+        500:
+          description: Error 500
+          body:
+            application/json:
+              schema: 500
+              example: !include ./errors/500.json
+/admin:
+  /dashboard:
+    get:
+      responses:
+        200:
+          description: Hello world !
+          body:
+            application/json:
+              schema: hello_word
+              example: !include ./examples/hello_word.json
