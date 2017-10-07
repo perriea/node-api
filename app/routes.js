@@ -6,15 +6,15 @@ var Example    = require(path.join(__dirname, '/controllers/example'));
 
 module.exports = function(app, passport, error) {
 
-    app.get('/', function (req, res) {
+    app.get('/v1/', function (req, res) {
         error.http_success(req, res, { code: 200, message: "Hello World !" });
     });
 
-    app.route('/example')
+    app.route('/v1/example')
         .get(Example.Get)
         .post(Example.Post);
 
-    app.route('/example/:id')
+    app.route('/v1/example/:id')
         .get(Middleware.isLoggedIn, Example.GetId)
         .put(Middleware.isLoggedIn, Example.PutId)
         .delete(Middleware.isLoggedIn, Example.DeleteId);
@@ -23,7 +23,7 @@ module.exports = function(app, passport, error) {
     // =====================================
     // LOGIN ===============================
     // =====================================
-    app.post('/api/auth/login', function(req, res, next) {
+    app.post('/v1/auth/login', function(req, res, next) {
         passport.authenticate('local-login', function(err, user, info)
         {
             if (err)
@@ -44,7 +44,7 @@ module.exports = function(app, passport, error) {
     // =====================================
     // SIGNUP ==============================
     // =====================================
-    app.post('/api/auth/signup', function(req, res, next) {
+    app.post('/v1/auth/signup', function(req, res, next) {
         passport.authenticate('local-signup', function(err, user, info)
         {
             if (err)
@@ -62,7 +62,7 @@ module.exports = function(app, passport, error) {
     // =====================================
     // LOGOUT ==============================
     // =====================================
-    app.get('/logout', function(req, res) {
+    app.get('/v1/auth/logout', function(req, res) {
         req.logout();
         error.http_success(req, res, { code: 200, message: "logout" });
     });
