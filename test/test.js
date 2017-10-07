@@ -4,7 +4,7 @@ var assert   = require('assert');
 
 // Ignore invalid self-signed ssl certificate
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-var base_url = "https://localhost:4433/";
+var base_url = "https://localhost:4433/v1/";
 
 describe("Test Server API", function() {
     it("GET /", function(done) {

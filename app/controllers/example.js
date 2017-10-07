@@ -1,4 +1,4 @@
-var error     = require('../controllers/error');
+var error     = require(__dirname + '/error');
 var database  = require('../models/index');
 var validator = require('validator');
 
