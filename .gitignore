@@ -8,4 +8,5 @@ config/ssl/*
 .tmp/
 npm-debug.log
 public/index.html
-app/config/ssl/*
+app/config/ssl/*.crt
+app/config/ssl/*.key
