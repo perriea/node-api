@@ -19,7 +19,7 @@ var compression    = require("compression");
 var helmet         = require("helmet");
 var app            = express();
 
-var colors         = require(path.join(__dirname, '/config/color'));
+var colors         = require(path.join(__dirname, '/app/services/color'));
 var error          = require(path.join(__dirname, '/app/controllers/error'));
 
 
@@ -30,8 +30,8 @@ var ports = {
 };
 
 var credentials = {
-    key: fs.readFileSync(path.join(__dirname, '/config/ssl/server.key')),
-    cert: fs.readFileSync(path.join(__dirname, '/config/ssl/server.crt'))
+    key: fs.readFileSync(path.join(__dirname, '/app/config/ssl/server.key')),
+    cert: fs.readFileSync(path.join(__dirname, '/app/config/ssl/server.crt'))
 };
 
 
@@ -65,7 +65,7 @@ app.use(cookieParser());
 // accept cross domain *
 app.use(cors({
     origin: ["*"],
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
@@ -91,8 +91,8 @@ app.use(passport.session());
 
 
 // routes ==================================================
-require('./app/routes')(app, passport, error); // configure our routes
-require('./config/passport')(passport);
+require(path.join(__dirname, 'app/routes'))(app, passport, error); // configure our routes
+require(path.join(__dirname, 'app/services/passport'))(passport);
 
 // start app ===============================================
 // change http to https

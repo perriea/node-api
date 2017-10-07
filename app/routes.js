@@ -3,8 +3,6 @@ var path       = require('path');
 
 var Middleware = require(path.join(__dirname, '/middleware'));
 var Example    = require(path.join(__dirname, '/controllers/example'));
-//var colors   = require(path.join(__dirname, '../config/color'));
-//var MUsers   = require(path.join(__dirname, '/models/users'));
 
 module.exports = function(app, passport, error) {
 
@@ -13,14 +11,13 @@ module.exports = function(app, passport, error) {
     });
 
     app.route('/example')
-        .get(Example.testGet)
-        .post(Example.testPost);
+        .get(Example.Get)
+        .post(Example.Post);
 
     app.route('/example/:id')
-        .get(Middleware.isLoggedIn, Example.testGetId)
-        .post(Middleware.isLoggedIn, Example.testPostId)
-        .put(Middleware.isLoggedIn, Example.testPutId)
-        .delete(Middleware.isLoggedIn, Example.testDeleteId);
+        .get(Middleware.isLoggedIn, Example.GetId)
+        .put(Middleware.isLoggedIn, Example.PutId)
+        .delete(Middleware.isLoggedIn, Example.DeleteId);
 
 
     // =====================================
