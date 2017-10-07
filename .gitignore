@@ -1,6 +1,5 @@
 node_modules/
-config/ssl/cert.pem
-config/ssl/key.pem
+config/ssl/*
 .DS_Store
 *~
 ./**/.DS_Store
@@ -8,4 +7,6 @@ config/ssl/key.pem
 .idea/
 .tmp/
 npm-debug.log
-config/ssl/
+public/index.html
+app/config/ssl/*.crt
+app/config/ssl/*.key

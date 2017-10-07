@@ -7,7 +7,7 @@
 #### OpenSSL
 
 Run the command in your Terminal `npm run ssl` to generate SSL certificates.   
-The certificates shall be placed in `/Node-API/config/ssl/`.
+The certificates shall be placed in `/Node-API/app/config/ssl/`.
 
 #### Let's Encrypt
 
@@ -26,6 +26,14 @@ var options = {
   ca: fs.readFileSync('/etc/letsencrypt/live/example.com/chain.pem')
 };
 ```
+
+### Sequelize CLI
+
+#### Documentation
+
+You can consult the Sequelize CLI documentation : [http://docs.sequelizejs.com/manual/tutorial/migrations.html#the-cli](http://docs.sequelizejs.com/manual/tutorial/migrations.html#the-cli)   
+Repository : [https://github.com/sequelize/cli](https://github.com/sequelize/cli)
+
 
 ### Docker
 
@@ -56,7 +64,7 @@ Launch the application with the command: `npm start` or ` node server.js`
 
 #### Production
 
-Install `forever` or` pm2` to start the server in background.   
+Install `forever` or `pm2` to start the server in background.   
 Launch the application with the command: `pm2 start cluster.js`   
 One thread per core will be created, example: 4 cores = 4 threads.
 
@@ -65,7 +73,7 @@ One thread per core will be created, example: 4 cores = 4 threads.
 This project was realized with the following tools :
 * NodeJS,
 * Express,
-* Sequelize (ORM),
+* Sequelize (ORM & CLI),
 * Request, Mocha (unit tests),
 * ReCluster (Clustered Web server)
 * Docker

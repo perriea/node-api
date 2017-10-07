@@ -2,7 +2,7 @@ var LocalStrategy    = require('passport-local').Strategy;
 var validator        = require('validator');
 
 // We load the MySQL model (Sequelize)
-var MUsers           = require('../app/models/users');
+var Database         = require('../models/index');
 
 module.exports = function(passport) {
 

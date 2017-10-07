@@ -1,13 +1,15 @@
 {
-  "name": "Node-API",
+  "name": "node-api",
   "version": "2.1.0",
   "homepage": "https://github.com/perriea/Node-API/blob/master/README.md",
   "description": "Simple Node JS Framework",
   "main": "server.js",
   "scripts": {
     "cluster": "node cluster.js",
-    "test": "mocha ./test/test.js",
-    "ssl": "./tools/ssl/install.sh"
+    "ssl": "openssl req -nodes -new -x509 -newkey rsa:4096 -keyout app/config/ssl/server.key -out app/config/ssl/server.crt -days 365 -subj '/C=FR/ST=IDF/L=Paris/O=My Inc/OU=DevOps/CN=localhost/emailAddress=example@gmail.com'",
+    "test": "./node_modules/.bin/mocha ./test/*.js",
+    "doc:generate": "./node_modules/.bin/raml2html docs/api.raml > public/index.html",
+    "db:migrate": "./node_modules/.bin/sequelize db:migrate --config app/config/config.json --migrations-path app/migrations --models-path app/models"
   },
   "author": "PERRIER Aurelien",
   "license": "MIT",
@@ -22,16 +24,16 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "~1.4.2",
     "colors": "^1.1.2",
-    "compression": "^1.6.2",
+    "compression": "^1.7.1",
     "cookie-parser": "^1.4.3",
-    "cors": "^2.8.1",
+    "cors": "^2.8.4",
     "express": "~4.5.1",
-    "express-session": "^1.14.0",
+    "express-session": "^1.15.6",
     "graceful-fs": "^4.1.11",
-    "helmet": "^3.1.0",
+    "helmet": "^3.8.2",
     "method-override": "~2.0.2",
-    "morgan": "^1.7.0",
-    "mysql": "^2.12.0",
+    "morgan": "^1.9.0",
+    "mysql": "^2.15.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
@@ -48,8 +50,9 @@
     "chai-http": "^3.0.0",
     "describe": "^1.2.0",
     "log": "^1.4.0",
-    "mocha": "^3.2.0",
-    "request": "^2.79.0",
-    "sequelize-cli": "^2.4.0"
+    "raml2html": "^6.4.1",
+    "mocha": "^3.5.3",
+    "request": "^2.83.0",
+    "sequelize-cli": "^2.8.0"
   }
 }

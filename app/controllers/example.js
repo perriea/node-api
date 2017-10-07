@@ -1,46 +1,39 @@
-var error     = require('../controllers/error');
+var error     = require(__dirname + '/error');
+var database  = require('../models/index');
 var validator = require('validator');
 
 module.exports = {
 
-    testGet: function(req, res)
+    Get: function(req, res)
     {
-        return error.http_success(req, res, { code: 200, message: "TEST GET API OK" });
+        return error.http_success(req, res, { code: 200, message: "Hello Word !" });
     },
 
-    testGetId: function(req, res)
+    GetId: function(req, res)
     {
         if (validator.isInt(req.params.id))
-            error.http_success(req, res, { code: 200, message: "TEST GET API id: " + req.params.id });
+            error.http_success(req, res, { code: 200, message: "Hello world ! id: " + req.params.id });
         else
             error.http_error(req, res, { code: 400 })
     },
 
-    testPost: function(req, res)
+    Post: function(req, res)
     {
-        error.http_success(req, res, { code: 201, message: "Task created" });
+        error.http_success(req, res, { code: 201, message: "Hello world !" });
     },
 
-    testPostId: function(req, res)
-    {
-         if (validator.isInt(req.params.id))
-             error.http_success(req, res, { code: 200, message: "TEST GET API id: " + req.params.id });
-         else
-             error.http_error(req, res, { code: 400 });
-    },
-
-    testPutId: function(req, res)
+    PutId: function(req, res)
     {
         if (validator.isInt(req.params.id))
-            error.http_success(req, res, { code: 200, message: "TEST GET API id: " + req.params.id });
+            error.http_success(req, res, { code: 200, message: "Hello world ! id: " + req.params.id });
         else
             error.http_error(req, res, { code: 400 });
     },
 
-    testDeleteId: function(req, res)
+    DeleteId: function(req, res)
     {
         if (validator.isInt(req.params.id))
-            error.http_success(req, res, { code: 200, message: "TEST GET API id: " + req.params.id });
+            error.http_success(req, res, { code: 200, message: "Hello world ! id: " + req.params.id });
         else
             error.http_error(req, res, { code: 400 });
     }
