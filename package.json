@@ -7,7 +7,7 @@
   "scripts": {
     "cluster": "node cluster.js",
     "ssl": "openssl req -nodes -new -x509 -newkey rsa:4096 -keyout app/config/ssl/server.key -out app/config/ssl/server.crt -days 365 -subj '/C=FR/ST=IDF/L=Paris/O=My Inc/OU=DevOps/CN=localhost/emailAddress=example@gmail.com'",
-    "test": "./node_modules/.bin/mocha test/*.js",
+    "test": "./node_modules/.bin/mocha --reporter spec",
     "doc:generate": "./node_modules/.bin/raml2html docs/api.raml > public/index.html",
     "db:migrate": "./node_modules/.bin/sequelize db:migrate --config app/config/config.json --migrations-path app/migrations --models-path app/models"
   },

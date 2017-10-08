@@ -12,9 +12,9 @@ module.exports = function(app, passport) {
         .post(CExample.Post);
 
     app.route('/v1/example/:id')
-        .get(Middleware.isLoggedIn, CExample.GetId)
-        .put(Middleware.isLoggedIn, CExample.PutId)
-        .delete(Middleware.isLoggedIn, CExample.DeleteId);
+        .get(CExample.GetId)
+        .put(CExample.PutId)
+        .delete(CExample.DeleteId);
 
 
     // =====================================
