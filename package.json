@@ -1,13 +1,13 @@
 {
   "name": "node-api",
   "version": "2.1.0",
-  "homepage": "https://github.com/perriea/Node-API/blob/master/README.md",
-  "description": "Simple Node JS Framework",
+  "homepage": "https://github.com/perriea/node-api/blob/master/README.md",
+  "description": "Simple Node JS API Example",
   "main": "server.js",
   "scripts": {
     "cluster": "node cluster.js",
     "ssl": "openssl req -nodes -new -x509 -newkey rsa:4096 -keyout app/config/ssl/server.key -out app/config/ssl/server.crt -days 365 -subj '/C=FR/ST=IDF/L=Paris/O=My Inc/OU=DevOps/CN=localhost/emailAddress=example@gmail.com'",
-    "test": "./node_modules/.bin/mocha ./test/*.js",
+    "test": "./node_modules/.bin/mocha test/*.js",
     "doc:generate": "./node_modules/.bin/raml2html docs/api.raml > public/index.html",
     "db:migrate": "./node_modules/.bin/sequelize db:migrate --config app/config/config.json --migrations-path app/migrations --models-path app/models"
   },
@@ -15,10 +15,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/perriea/Node-API"
+    "url": "https://github.com/perriea/node-api"
   },
   "bugs": {
-    "url": "https://github.com/perriea/Node-API/issues"
+    "url": "https://github.com/perriea/node-api/issues"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
