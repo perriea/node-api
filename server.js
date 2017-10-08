@@ -1,11 +1,12 @@
 // Framework ExpressJS
 var express        = require('express');
+var app            = express();
 
 // HTTP/1.1 ou HTTP/2 (spdy)
 var http           = require('http');
 var spdy		   = require('spdy');
 
-// Tools
+// Packages
 var path           = require('path');
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
@@ -17,16 +18,15 @@ var expressSession = require('express-session');
 var fs             = require('fs');
 var compression    = require("compression");
 var helmet         = require("helmet");
-var app            = express();
 
+// services avalaible
 var colors         = require(path.join(__dirname, '/app/services/color'));
-var error          = require(path.join(__dirname, '/app/controllers/error'));
+//var redis          = require(path.join(__dirname, '/app/services/redis'))
 
 
-// var ports + SSL
 var ports = {
-    http: 8080,
-    https: 4433
+    http: process.env.APP_HTTP_PORT || 8080,
+    https: process.env.APP_HTTPS_PORT || 4433
 };
 
 var credentials = {
@@ -34,55 +34,65 @@ var credentials = {
     cert: fs.readFileSync(path.join(__dirname, '/app/config/ssl/server.crt'))
 };
 
-
-// var locale app
-app.locals.title = 'My App';
+// Locale app
+app.locals.title = 'My API';
 app.locals.strftime = require('strftime');
-app.locals.email = 'me@myapp.com';
+app.locals.email = 'me@myapi.com';
 
 
 // configuration ===========================================
 
-// favicon + robots.txt + docs
+// expose favicon & robots.txt & docs
 app.use('/', express.static(path.join(__dirname, '/public')));
 
-// show logs in console
-app.use(morgan("common"));
+// Show logs in console
+var logDirectory = process.env.APP_PATH_LOG || path.join(__dirname, 'logs');
+fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
 
-// Recuperation des POST
-// parse application/json 
+// Access Logs
+app.use(morgan(':remote-addr :remote-user [:date[web]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent - :response-time[2] ms"', {
+    skip: function (req, res) { return res.statusCode > 500 },
+    stream: fs.createWriteStream(path.join(logDirectory, 'access.log'))
+}))
+
+// Errors Logs
+app.use(morgan(':remote-addr :remote-user [:date[web]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent - :response-time[2] ms"', {
+    skip: function (req, res) { return res.statusCode < 500 },
+    stream: fs.createWriteStream(path.join(logDirectory, 'error.log'))
+}))
+
+// Parse application/json 
 app.use(bodyParser.json());
 
-// parse application/vnd.api+json as json
+// Parse application/vnd.api+json as json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
-// parse application/x-www-form-urlencoded
+// Parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// read cookies (needed for auth)
+// Read cookies (needed for auth)
 app.use(cookieParser());
 
-// accept cross domain *
+// Accept cross domain *
 app.use(cors({
     origin: ["*"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
-// override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
+// Override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(methodOverride('X-HTTP-Method-Override'));
 
-// compression => fast and light request
+// Fast & light request
 app.use(compression());
 
-// anti XSS
+// Anti XSS
 app.use(helmet());
 
 
-// Auth
-// init de session Passport
+// Init local session Passport
 app.use(expressSession({
-    secret: 'RANDOM',
+    secret: process.env.APP_SESSION_SECRET || 'RANDOM',
     resave: true,
     saveUninitialized: true
 }));
@@ -90,12 +100,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-// routes ==================================================
-require(path.join(__dirname, 'app/routes'))(app, passport, error); // configure our routes
+// Routes ==================================================
+require(path.join(__dirname, 'app/routes'))(app, passport);
 require(path.join(__dirname, 'app/services/passport'))(passport);
 
-// start app ===============================================
-// change http to https
+// Start app ===============================================
+// Change http to https
 
 console.log(colors.info('RESTful API running, PID : ' + process.pid));
 
@@ -108,4 +118,4 @@ http.createServer(function (req, res) {
 // HTTP/2
 httpsServer = spdy.createServer(credentials, app).listen(ports.https, () => { console.log(colors.verbose('Port serveur HTTPS (API) : ' + ports.https)); });
 
-exports = module.exports = app;
+module.exports = app;
