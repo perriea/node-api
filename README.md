@@ -68,6 +68,17 @@ Install `forever` or `pm2` to start the server in background.
 Launch the application with the command: `pm2 start cluster.js`   
 One thread per core will be created, example: 4 cores = 4 threads.
 
+### Customize
+
+Changing the value of the following environment variables :
+- **NODE_ENV** (default: `development`),
+- **APP_REDIS_HOST** (default: `127.0.0.1`),
+- **APP_REDIS_PORT** (default: `6379`),
+- **APP_HTTP_PORT** (default: `8080`),
+- **APP_HTTPS_PORT** (default: `4433`),
+- **APP_PATH_LOG** (default: `logs`),
+- **APP_SESSION_SECRET** (default: `RANDOM`).
+
 ## Constitution
 
 This project was realized with the following tools :
