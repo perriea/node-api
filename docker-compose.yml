@@ -1,0 +1,57 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      resources:
+        limits:
+          cpus: '25.000'
+          memory: 1024M
+        reservations:
+          cpus: '25.000'
+          memory: 512M
+    environment:
+      MYSQL_ROOT_PASSWORD: somenodeapi
+      MYSQL_DATABASE: test-node
+      MYSQL_USER: node
+      MYSQL_PASSWORD: nodejs
+    ports:
+      - "3306:3306"
+
+  api:
+    depends_on:
+      - db
+    build: ./
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      resources:
+        limits:
+          cpus: '25.000'
+          memory: 512M
+        reservations:
+          cpus: '25.000'
+          memory: 450M
+    environment:
+      - NODE_ENV=development
+      - APP_PATH_LOG=logs
+      - APP_SESSION_SECRET=RANDOM
+    ports:
+      - "80:8080"
+      - "443:4433"
+
+volumes:
+    db_data:
