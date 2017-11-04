@@ -1,10 +1,11 @@
 FROM node:8.6.0-alpine
+
 LABEL Aurelien PERRIER <a.perrier89@gmail.com>
 
+# Install dependencies
 RUN apk add --no-cache --update openssl
 
-# Create app directory
-RUN mkdir -p /srv/app
+# Move workdir
 WORKDIR /srv/app
 
 # Bundle app source
@@ -20,4 +21,5 @@ RUN npm run ssl
 RUN npm run doc:generate
 
 EXPOSE 8080 4433
-CMD ["npm", "start"]
+
+ENTRYPOINT ["npm", "start"]
