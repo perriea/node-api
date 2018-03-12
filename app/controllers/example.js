@@ -1,40 +1,49 @@
-var error     = require(__dirname + '/error');
-var database  = require('../models/index');
+// Dependencies
 var validator = require('validator');
+var path      = require('path');
+
+// Error Controller
+var back      = require(path.join(__dirname, '/back'));
+
+// Database models
+var database  = require(path.join(__dirname,'../models/index'));
 
 module.exports = {
 
     Get: function(req, res)
     {
-        return error.http_success(req, res, { code: 200, message: "Hello Word !" });
+        return back.success(req, res, { code: 200, message: "Hello Word !" });
     },
 
     GetId: function(req, res)
     {
-        if (validator.isInt(req.params.id))
-            error.http_success(req, res, { code: 200, message: "Hello world ! id: " + req.params.id });
-        else
-            error.http_error(req, res, { code: 400 })
+        if (validator.isInt(req.params.id)) {
+            back.success(req, res, { code: 200, message: "Hello world ! id: " + req.params.id });
+        } else {
+            back.error(req, res, { code: 400 });
+        }
     },
 
     Post: function(req, res)
     {
-        error.http_success(req, res, { code: 201, message: "Hello world !" });
+        back.success(req, res, { code: 201, message: "Hello world !" });
     },
 
     PutId: function(req, res)
     {
-        if (validator.isInt(req.params.id))
-            error.http_success(req, res, { code: 200, message: "Hello world ! id: " + req.params.id });
-        else
-            error.http_error(req, res, { code: 400 });
+        if (validator.isInt(req.params.id)) {
+            back.success(req, res, { code: 200, message: "Hello world ! id: " + req.params.id });
+        } else {
+            back.error(req, res, { code: 400 });
+        }
     },
 
     DeleteId: function(req, res)
     {
-        if (validator.isInt(req.params.id))
-            error.http_success(req, res, { code: 200, message: "Hello world ! id: " + req.params.id });
-        else
-            error.http_error(req, res, { code: 400 });
+        if (validator.isInt(req.params.id)) {
+            back.success(req, res, { code: 200, message: "Hello world ! id: " + req.params.id });
+        } else {
+            back.error(req, res, { code: 400 });
+        }
     }
 };

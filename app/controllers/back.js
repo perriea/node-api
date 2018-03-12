@@ -1,6 +1,6 @@
 module.exports = {
 
-    http_error: function(req, res, info)
+    error: function(req, res, info)
     {
         switch (info.code)
         {
@@ -29,7 +29,7 @@ module.exports = {
         }
     },
 
-    http_success: function(req, res, info)
+    success: function(req, res, info)
     {
         switch (info.code)
         {
