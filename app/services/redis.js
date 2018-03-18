@@ -5,6 +5,7 @@ var colors = require('color');
 var config_redis = {
     host: process.env.APP_REDIS_HOST || '127.0.0.1',
     port: process.env.APP_REDIS_PORT || 6379,
+    
     retry_strategy: function (options) {
         if (options.error && options.error.code === 'ECONNREFUSED') {
             // End reconnecting on a specific error and flush all commands with a individual error

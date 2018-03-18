@@ -10,3 +10,4 @@ config/ssl/*
 public/index.html
 app/config/ssl/*.crt
 app/config/ssl/*.key
+logs

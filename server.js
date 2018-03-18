@@ -19,9 +19,9 @@ var fs             = require('fs');
 var compression    = require("compression");
 var helmet         = require("helmet");
 
-// services avalaible
+// Plugin services
 var colors         = require(path.join(__dirname, '/app/services/color'));
-//var redis          = require(path.join(__dirname, '/app/services/redis'))
+//var redis        = require(path.join(__dirname, '/app/services/redis'));
 
 
 var ports = {
@@ -34,6 +34,10 @@ var credentials = {
     cert: fs.readFileSync(path.join(__dirname, '/app/config/ssl/server.crt'))
 };
 
+// Show logs in console
+var logDirectory = process.env.APP_PATH_LOG || path.join(__dirname, 'logs');
+fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+
 // Locale app
 app.locals.title = 'My API';
 app.locals.strftime = require('strftime');
@@ -44,10 +48,6 @@ app.locals.email = 'me@myapi.com';
 
 // expose favicon & robots.txt & docs
 app.use('/', express.static(path.join(__dirname, '/public')));
-
-// Show logs in console
-var logDirectory = process.env.APP_PATH_LOG || path.join(__dirname, 'logs');
-fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
 
 // Access Logs
 app.use(morgan(':remote-addr :remote-user [:date[web]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent - :response-time[2] ms"', {
@@ -103,6 +103,7 @@ app.use(passport.session());
 // Routes ==================================================
 require(path.join(__dirname, 'app/routes'))(app, passport);
 require(path.join(__dirname, 'app/services/passport'))(passport);
+
 
 // Start app ===============================================
 // Change http to https

@@ -9,7 +9,8 @@
     "ssl": "openssl req -nodes -new -x509 -newkey rsa:4096 -keyout app/config/ssl/server.key -out app/config/ssl/server.crt -days 365 -subj '/C=FR/ST=IDF/L=Paris/O=My Inc/OU=DevOps/CN=localhost/emailAddress=example@gmail.com'",
     "test": "./node_modules/.bin/mocha --reporter spec",
     "doc:generate": "./node_modules/.bin/raml2html docs/api.raml > public/index.html",
-    "db:migrate": "./node_modules/.bin/sequelize db:migrate --config app/config/config.json --migrations-path app/migrations --models-path app/models"
+    "db:migrate": "./node_modules/.bin/sequelize db:migrate --config app/config/config.json --migrations-path app/migrations --models-path app/models",
+    "db:seed:all": "./node_modules/.bin/sequelize db:seed:all --config app/config/config.json --migrations-path app/migrations --models-path app/models --seeders-path app/seeders"
   },
   "author": "PERRIER Aurelien",
   "license": "MIT",
@@ -23,14 +24,14 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
-    "colors": "^1.1.2",
-    "compression": "^1.7.1",
+    "colors": "^1.2.1",
+    "compression": "^1.7.2",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
-    "express": "^4.16.2",
+    "express": "^4.16.3",
     "express-session": "^1.15.6",
     "graceful-fs": "^4.1.11",
-    "helmet": "^3.9.0",
+    "helmet": "^3.12.0",
     "method-override": "^2.3.10",
     "morgan": "^1.9.0",
     "mysql": "^2.15.0",
@@ -39,7 +40,7 @@
     "path": "^0.12.7",
     "pmx": "^0.6.8",
     "recluster": "^0.4.5",
-    "sequelize": "^3.30.4",
+    "sequelize": "^3.32.1",
     "spdy": "^3.4.7",
     "strftime": "^0.9.2",
     "validator": "^6.3.0"
@@ -50,9 +51,9 @@
     "chai-http": "^3.0.0",
     "describe": "^1.2.0",
     "log": "^1.4.0",
-    "raml2html": "^6.4.1",
     "mocha": "^3.5.3",
-    "request": "^2.83.0",
+    "raml2html": "^6.7.0",
+    "request": "^2.85.0",
     "sequelize-cli": "^2.8.0"
   }
 }
